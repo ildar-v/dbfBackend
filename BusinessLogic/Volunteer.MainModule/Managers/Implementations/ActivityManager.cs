@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
 using Volunteer.MainModule.Managers.DataManagers;
 using Volunteer.MainModule.Managers.DataManagers.Filters;
-using VolunteerSystem;
+using Volunteer;
+using Volunteer.BLModels.Entities;
 
 namespace Volunteer.MainModule.Managers.Implementations
 {
