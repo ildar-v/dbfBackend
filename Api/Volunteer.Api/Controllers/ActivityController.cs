@@ -1,57 +1,52 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using Volunteer.BLModels.Entities;
-using Volunteer.MainModule.Managers;
-using Volunteer.MainModule.Managers.DataManagers;
+using Volunteer.Activities.Interactor;
+using Volunteer.Activities.DTO;
 
 namespace Volunteer.Api.Controllers
 {
-    [Route("api/[controller]")]
+    //[Route("api/[controller]")]
     [ApiController]
     public class ActivityController : ControllerBase
     {
-        private readonly IDataManager<Activity> dataManager;
-        private readonly ISimpleManager<Activity> activityManager;
+        private readonly ActivitiesInteractor activitiesInteractor;
 
-        public ActivityController(IDataManager<Activity> dataManager, ISimpleManager<Activity> activityManager)
+        public ActivityController(ActivitiesInteractor activitiesInteractor)
         {
-            this.dataManager = dataManager;
-            this.activityManager = activityManager;
+            this.activitiesInteractor = activitiesInteractor;
         }
 
         // GET api/values
-        [HttpGet]
-        public ActionResult<IEnumerable<Activity>> Get()
+        [HttpGet("api/values")]
+        public ActionResult<IEnumerable<ActivityDTO>> Get()
         {
-            return Ok(activityManager.Find());
+            var data = activitiesInteractor.Find();
+            return Ok(data);
         }
 
-        // GET api/values/5
-        [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
-        {
-            return "value";
-        }
+        //// GET api/values/5
+        //[HttpGet("{id}")]
+        //public ActionResult<string> Get(int id)
+        //{
+        //    return "value";
+        //}
 
-        // POST api/values
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
+        //// POST api/values
+        //[HttpPost]
+        //public void Post([FromBody] string value)
+        //{
+        //}
 
-        // PUT api/values/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
+        //// PUT api/values/5
+        //[HttpPut("{id}")]
+        //public void Put(int id, [FromBody] string value)
+        //{
+        //}
 
-        // DELETE api/values/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
-        }
+        //// DELETE api/values/5
+        //[HttpDelete("{id}")]
+        //public void Delete(int id)
+        //{
+        //}
     }
 }

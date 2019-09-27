@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\BusinessLogic\Volunteer.MainModule\Volunteer.MainModule.csproj" />
+    <ProjectReference Include="..\..\Volunteer.Comments\Volunteer.Comments.csproj" />
+    <ProjectReference Include="..\Volunteer.Activities.DTO\Volunteer.Activities.DTO.csproj" />
+  </ItemGroup>
+
+</Project>

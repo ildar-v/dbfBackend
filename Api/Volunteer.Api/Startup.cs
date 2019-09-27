@@ -1,18 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
 using TempDAL;
+using Volunteer.Activities.Interactor;
 using Volunteer.BLModels.Entities;
+using Volunteer.Comments.DataManager;
+using Volunteer.Comments.Entity;
+using Volunteer.Comments.Manager;
+using Volunteer.DirtyData;
 using Volunteer.MainModule.Managers;
 using Volunteer.MainModule.Managers.DataManagers;
 using Volunteer.MainModule.Managers.Implementations;
@@ -40,6 +38,10 @@ namespace Volunteer.Api
 
             services.AddSingleton<IDataManager<Activity>, ActivityDataManager>();
             services.AddTransient<ISimpleManager<Activity>, ActivityManager>();
+            services.AddTransient<IDataManager<Comment>, CommentDataManager>();
+            services.AddTransient<ISimpleManager<Comment>, CommentsManager>();
+            services.AddTransient<ActivitiesInteractor>();
+            ActivitiesData.InitializeTempData();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

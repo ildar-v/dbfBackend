@@ -12,7 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\BusinessLogic\Volunteer.DirtyData\Volunteer.DirtyData.csproj" />
+    <ProjectReference Include="..\..\ExtentionModules\Activities\Volunteer.Activities.CommentsInteractor\Volunteer.Activities.Interactor.csproj" />
     <ProjectReference Include="..\..\ExtentionModules\TempDataManager\TempDAL.csproj" />
+    <ProjectReference Include="..\..\ExtentionModules\Volunteer.Comments\Volunteer.Comments.csproj" />
   </ItemGroup>
 
 </Project>

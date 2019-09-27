@@ -1,16 +1,17 @@
-﻿namespace TempDAL
+﻿
+namespace Volunteer.Comments.DataManager
 {
     using System;
     using System.Collections.Generic;
+    using MainModule.Managers.DataManagers;
+    using Comments.Entity;
     using System.Linq;
-    using Volunteer.BLModels.Entities;
-    using Volunteer.MainModule.Managers.DataManagers;
 
-    public class ActivityDataManager : IDataManager<Activity>
+    public class CommentDataManager : IDataManager<Comment>
     {
-        public static List<Activity> tempStore { get; set; }
+        public static IList<Comment> tempStore { get; set; }
 
-        public IEnumerable<Activity> GetAll(Predicate<Activity> filterPredicate = null)
+        public IEnumerable<Comment> GetAll(Predicate<Comment> filterPredicate = null)
         {
             if (filterPredicate == null)
             {
@@ -20,7 +21,7 @@
             return tempStore.Where(i => filterPredicate.Invoke(i));
         }
 
-        public bool Save(Activity enitity)
+        public bool Save(Comment enitity)
         {
             var exists = tempStore.FirstOrDefault(i => i.Uid == enitity.Uid);
             if (exists == null)
