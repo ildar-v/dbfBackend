@@ -17,11 +17,12 @@ namespace Volunteer.MainModule.Managers.DataManagers.Filters
         }
         public Filter(Dictionary<string, object[]> filterParams)
         {
+            multiple = true;
             this.filterParams = filterParams;
         }
 
-        public bool Multiple { get; }
-        public Dictionary<string, object[]> FilterParams { get; }
+        public bool Multiple { get => multiple; }
+        public Dictionary<string, object[]> FilterParams { get => filterParams; }
 
         public bool Check<T>(object verifiable)
         {
@@ -36,6 +37,7 @@ namespace Volunteer.MainModule.Managers.DataManagers.Filters
                 var propertyValue = verifiable.GetType().GetProperty(param.Key).GetValue(verifiable);
                 return param.Value.Any(v => Compare(v, propertyValue));
             }
+
             foreach (var param in this.FilterParams)
             {
                 var propertyValue = verifiable.GetType().GetProperty(param.Key).GetValue(verifiable);
