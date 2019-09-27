@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using Volunteer.MainModule.Managers.DataManagers;
-using Volunteer.MainModule.Managers.DataManagers.Filters;
-using Volunteer;
-using Volunteer.BLModels.Entities;
-
-namespace Volunteer.MainModule.Managers.Implementations
+﻿namespace Volunteer.MainModule.Managers.Implementations
 {
-    internal class ActivityManager : ISimpleManager<Activity>
+    using System.Collections.Generic;
+    using Volunteer.MainModule.Managers.DataManagers;
+    using Volunteer.MainModule.Managers.DataManagers.Filters;
+    using Volunteer.BLModels.Entities;
+
+    public class ActivityManager : ISimpleManager<Activity>
     {
         private IDataManager<Activity> dataManager;
         public ActivityManager(IDataManager<Activity> dataManager)
