@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Volunteer.BLModels.Entities;
-using Volunteer.MainModule.Managers.DataManagers;
-
-namespace TempDAL
+﻿namespace TempDAL
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Volunteer.BLModels.Entities;
+    using Volunteer.MainModule.Managers.DataManagers;
+
     public class ActivityDataManager : IDataManager<Activity>
     {
         private static List<Activity> tempStore = new List<Activity>()
@@ -44,6 +44,37 @@ namespace TempDAL
                 Title = "Какое-то название-2"
             }
         };
+
+        public ActivityDataManager()
+        {
+            tempStore = new List<Activity>();
+            tempStore.Add(new Activity
+            {
+                Uid = Guid.NewGuid(),
+                Title = "Помыть окна бабке",
+                Description = "Надо помыть бабке окна в Ижевске",
+                Location = null,
+                Rating = new Rating
+                {
+                    Uid = Guid.NewGuid(),
+                    Value = 0
+                },
+                Report = null
+            });
+            tempStore.Add(new Activity
+            {
+                Uid = Guid.NewGuid(),
+                Title = "Надо что-то сделать в Казани",
+                Description = "Надо что-то сделать в Казани очень срочно",
+                Location = null,
+                Rating = new Rating
+                {
+                    Uid = Guid.NewGuid(),
+                    Value = 5.5
+                },
+                Report = null
+            });
+        }
 
         public IEnumerable<Activity> GetAll(Predicate<Activity> filterPredicate = null)
         {

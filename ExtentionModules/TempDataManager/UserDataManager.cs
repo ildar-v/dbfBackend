@@ -10,6 +10,29 @@ namespace TempDAL
     {
         private static List<User> tempStore = new List<User>();
 
+        UserDataManager()
+        {
+            tempStore = new List<User>();
+            tempStore.Add(new User
+            {
+                Uid = Guid.NewGuid(),
+                Login = "Max",
+                FullName = "Карабаев Максим Олегович",
+                PasswordHash = "123456",
+                ActivitiesUsers = null,
+                Rating = null
+            });
+            tempStore.Add(new User
+            {
+                Uid = Guid.NewGuid(),
+                Login = "Max",
+                FullName = "Карабаев Максим Олегович",
+                PasswordHash = "123456",
+                ActivitiesUsers = null,
+                Rating = null
+            });
+        }
+
         public IEnumerable<User> GetAll(Predicate<User> filterPredicate = null)
         {
             if (filterPredicate == null)
