@@ -11,6 +11,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
+using TempDAL;
+using Volunteer.BLModels.Entities;
+using Volunteer.MainModule.Managers;
+using Volunteer.MainModule.Managers.DataManagers;
+using Volunteer.MainModule.Managers.Implementations;
 
 namespace Volunteer.Api
 {
@@ -32,6 +37,9 @@ namespace Volunteer.Api
             });
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddSingleton<IDataManager<Activity>, ActivityDataManager>();
+            services.AddTransient<ISimpleManager<Activity>, ActivityManager>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

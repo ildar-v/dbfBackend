@@ -17,7 +17,7 @@
         {
             if (filter == null)
             {
-                dataManager.GetAll();
+                return dataManager.GetAll();
             }
             return dataManager.GetAll(a => filter.Check<Activity>(a));
         }

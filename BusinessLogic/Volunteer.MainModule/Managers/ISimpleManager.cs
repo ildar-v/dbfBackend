@@ -5,7 +5,7 @@ namespace Volunteer.MainModule.Managers
 {
     public interface ISimpleManager<T>
     {
-        IEnumerable<T> Find(Filter filter);
+        IEnumerable<T> Find(Filter filter = null);
         bool Save(T entity);
     }
 }

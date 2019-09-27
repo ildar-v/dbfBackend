@@ -3,18 +3,30 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Volunteer.BLModels.Entities;
+using Volunteer.MainModule.Managers;
+using Volunteer.MainModule.Managers.DataManagers;
 
 namespace Volunteer.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class ActivityController : ControllerBase
     {
+        private readonly IDataManager<Activity> dataManager;
+        private readonly ISimpleManager<Activity> activityManager;
+
+        public ActivityController(IDataManager<Activity> dataManager, ISimpleManager<Activity> activityManager)
+        {
+            this.dataManager = dataManager;
+            this.activityManager = activityManager;
+        }
+
         // GET api/values
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<IEnumerable<Activity>> Get()
         {
-            return new string[] { "value1", "value2" };
+            return Ok(activityManager.Find());
         }
 
         // GET api/values/5
