@@ -1,9 +1,9 @@
-﻿namespace Volunteer.BusinessModels.Entities
+﻿namespace Volunteer.BLModels.Entities
 {
     using System;
     using Interfaces;
 
-    public class Activity : IBusinessModel, IRatingable
+    public class Activity : IEntity, IRatingable
     {
         public Guid Uid { get; set; }
         public string Title { get; set; }

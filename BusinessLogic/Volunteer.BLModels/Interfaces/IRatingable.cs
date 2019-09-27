@@ -1,4 +1,4 @@
-﻿namespace Volunteer.BusinessModels.Interfaces
+﻿namespace Volunteer.BLModels.Interfaces
 {
     public interface IRatingable
     {
