@@ -3,7 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.28917.181
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Volunteer.BLModels", "BusinessLogic\Volunteer.BLModels\Volunteer.BLModels.csproj", "{62DB4852-F017-40FC-BFF9-12EE2F68ADDF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volunteer.BLModels", "BusinessLogic\Volunteer.BLModels\Volunteer.BLModels.csproj", "{62DB4852-F017-40FC-BFF9-12EE2F68ADDF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Api", "Api", "{AE649250-DC55-408E-B2B0-F535A99E4E12}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Volunteer.Api", "Api\Volunteer.Api\Volunteer.Api.csproj", "{948E69AB-CD97-4AA8-890A-D8BEDDD4C377}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,9 +19,16 @@ Global
 		{62DB4852-F017-40FC-BFF9-12EE2F68ADDF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{62DB4852-F017-40FC-BFF9-12EE2F68ADDF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{62DB4852-F017-40FC-BFF9-12EE2F68ADDF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{948E69AB-CD97-4AA8-890A-D8BEDDD4C377}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{948E69AB-CD97-4AA8-890A-D8BEDDD4C377}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{948E69AB-CD97-4AA8-890A-D8BEDDD4C377}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{948E69AB-CD97-4AA8-890A-D8BEDDD4C377}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{948E69AB-CD97-4AA8-890A-D8BEDDD4C377} = {AE649250-DC55-408E-B2B0-F535A99E4E12}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {434BA4C3-2F92-457E-9D1F-7724A5BA279D}
