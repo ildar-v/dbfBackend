@@ -1,4 +1,4 @@
-﻿namespace VolunteerSystem.Entities
+﻿namespace Volunteer.BusinessModels.Entities
 {
     using System;
     using Interfaces;

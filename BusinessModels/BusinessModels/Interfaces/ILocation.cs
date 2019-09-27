@@ -1,4 +1,4 @@
-﻿namespace VolunteerSystem.Interfaces
+﻿namespace Volunteer.BusinessModels.Interfaces
 {
     using System;
     using System.Collections.Generic;

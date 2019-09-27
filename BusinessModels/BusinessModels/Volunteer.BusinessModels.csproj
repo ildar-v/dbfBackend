@@ -2,8 +2,8 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
-    <AssemblyName>VolunteerSystem</AssemblyName>
-    <RootNamespace>VolunteerSystem</RootNamespace>
+    <AssemblyName>Volunteer.BusinessModels</AssemblyName>
+    <RootNamespace>Volunteer.BusinessModels</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

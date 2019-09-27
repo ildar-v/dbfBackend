@@ -1,4 +1,4 @@
-﻿namespace VolunteerSystem.Interfaces
+﻿namespace Volunteer.BusinessModels.Interfaces
 {
     public interface IReport : IBusinessModel, IRatingable
     {
