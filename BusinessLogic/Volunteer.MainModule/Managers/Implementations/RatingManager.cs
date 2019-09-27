@@ -5,29 +5,28 @@
     using Volunteer.MainModule.Managers.DataManagers.Filters;
     using DataManagers;
 
-    public class UserManager : ISimpleManager<User>
+    public class RatingManager : ISimpleManager<Rating>
     {
-        private readonly IDataManager<User> dataManager;
+        private readonly IDataManager<Rating> dataManager;
 
-        public UserManager(IDataManager<User> dataManager)
+        public RatingManager(IDataManager<Rating> dataManager)
         {
             this.dataManager = dataManager;
         }
 
-        public IEnumerable<User> Find(Filter filter = null)
+        public IEnumerable<Rating> Find(Filter filter = null)
         {
             if (filter == null)
             {
                 this.dataManager.GetAll();
             }
 
-            return dataManager.GetAll(a => filter.Check<User>(a));
+            return dataManager.GetAll(a => filter.Check<Rating>(a));
         }
 
-        public bool Save(User entity)
+        public bool Save(Rating entity)
         {
             return this.dataManager.Save(entity);
         }
     }
-
 }
