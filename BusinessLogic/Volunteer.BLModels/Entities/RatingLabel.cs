@@ -5,8 +5,8 @@
 
     public class RatingLabel
     {
-        IRating Rating { get; set; }
-        Type EntityType { get; set; }
-        Guid EntityUid { get; set; }
+        public IRating Rating { get; set; }
+        public Type EntityType { get; set; }
+        public Guid EntityUid { get; set; }
     }
 }
