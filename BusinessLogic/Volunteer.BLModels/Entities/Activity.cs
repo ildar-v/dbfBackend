@@ -11,5 +11,6 @@
         public ILocation Location { get; set; }
         public IReport Report { get; set; }
         public IRating Rating { get; set; }
+        public DateTime AddDateTime { get; set; }
     }
 }

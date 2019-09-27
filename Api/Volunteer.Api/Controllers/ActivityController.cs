@@ -17,7 +17,7 @@ namespace Volunteer.Api.Controllers
         }
 
         // GET api/values
-        [HttpGet("api/values")]
+        [HttpGet("api/activities")]
         public ActionResult<IEnumerable<ActivityDTO>> Get()
         {
             var data = activitiesInteractor.Find();

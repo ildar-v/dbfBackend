@@ -95,7 +95,8 @@ namespace Volunteer.DirtyData
                     Uid = Guid.NewGuid(),
                     Value = 123,
                 },
-                Title = "Какое-то название"
+                Title = "Какое-то название",
+                AddDateTime = DateTime.Now
             },
             new Activity()
             {
@@ -106,7 +107,8 @@ namespace Volunteer.DirtyData
                     Uid = Guid.NewGuid(),
                     Value = 99,
                 },
-                Title = "Какое-то название-1"
+                Title = "Какое-то название-1",
+                AddDateTime = DateTime.Now
             },
             new Activity()
             {
@@ -117,7 +119,8 @@ namespace Volunteer.DirtyData
                     Uid = Guid.NewGuid(),
                     Value = 93,
                 },
-                Title = "Какое-то название-2"
+                Title = "Какое-то название-2",
+                AddDateTime = DateTime.Now
             }
         };
 
