@@ -10,7 +10,7 @@
     {
         private static List<Activity> tempStore = new List<Activity>();
 
-        ActivityDataManager()
+        public ActivityDataManager()
         {
             tempStore = new List<Activity>();
             tempStore.Add(new Activity
