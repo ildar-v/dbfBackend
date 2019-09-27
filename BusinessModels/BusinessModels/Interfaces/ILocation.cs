@@ -1,4 +1,4 @@
-﻿namespace VolunteerSystem
+﻿namespace VolunteerSystem.Interfaces
 {
     using System;
     using System.Collections.Generic;

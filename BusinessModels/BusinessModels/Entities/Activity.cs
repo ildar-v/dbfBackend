@@ -1,14 +1,15 @@
-﻿namespace VolunteerSystem
+﻿namespace VolunteerSystem.Entities
 {
     using System;
-    using System.Collections.Generic;
-    
-    public class Activity : IBusinessModel
+    using Interfaces;
+
+    public class Activity : IBusinessModel, IRatingable
     {
         public Guid Uid { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public ILocation Location { get; set; }
-        public ICollection<Report> Reports { get; set; }
+        public IReport Report { get; set; }
+        public IRating Rating { get; set; }
     }
 }

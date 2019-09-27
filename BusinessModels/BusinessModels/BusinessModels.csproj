@@ -6,4 +6,8 @@
     <RootNamespace>VolunteerSystem</RootNamespace>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Enums\" />
+  </ItemGroup>
+
 </Project>

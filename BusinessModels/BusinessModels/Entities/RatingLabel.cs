@@ -1,11 +1,12 @@
-﻿namespace VolunteerSystem
+﻿namespace VolunteerSystem.Entities
 {
     using System;
+    using Interfaces;
 
     public class RatingLabel
     {
         IRating Rating { get; set; }
-        EntityType EntityType { get; set; }
+        Type EntityType { get; set; }
         Guid EntityUid { get; set; }
     }
 }
