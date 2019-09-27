@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volunteer.Api", "Api\Volunt
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volunteer.MainModule", "BusinessLogic\Volunteer.MainModule\Volunteer.MainModule.csproj", "{7358FB8A-2C90-4B05-9404-F4A7BAA8732B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TempDAL", "TempDataManager\TempDAL.csproj", "{BB3F4993-4C5F-4CB5-8A5F-EFCA442372AA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TempDAL", "ExtentionModules\TempDataManager\TempDAL.csproj", "{BB3F4993-4C5F-4CB5-8A5F-EFCA442372AA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ExtentionModules", "ExtentionModules", "{B51CB5F8-072D-4ACB-83F0-B43FA84C9E90}"
 EndProject

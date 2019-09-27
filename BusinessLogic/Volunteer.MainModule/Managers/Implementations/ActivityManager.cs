@@ -2,8 +2,8 @@
 {
     using System.Collections.Generic;
     using Volunteer.MainModule.Managers.DataManagers;
-    using Volunteer.MainModule.Managers.DataManagers.Filters;
     using Volunteer.BLModels.Entities;
+    using Volunteer.MainModule.Managers.Filters;
 
     public class ActivityManager : ISimpleManager<Activity>
     {

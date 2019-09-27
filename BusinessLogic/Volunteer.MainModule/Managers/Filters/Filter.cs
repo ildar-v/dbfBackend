@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Volunteer.MainModule.Managers.DataManagers.Filters
+namespace Volunteer.MainModule.Managers.Filters
 {
     public class Filter
     {

@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using Volunteer.MainModule.Managers.DataManagers.Filters;
+using Volunteer.MainModule.Managers.Filters;
 
 namespace Volunteer.MainModule.Managers
 {

@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
     using Volunteer.BLModels.Entities;
-    using Volunteer.MainModule.Managers.DataManagers.Filters;
+    using Volunteer.MainModule.Managers.Filters;
     using DataManagers;
 
     public class RatingManager : ISimpleManager<Rating>
