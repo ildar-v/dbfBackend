@@ -38,7 +38,7 @@
         {
             if (string.IsNullOrWhiteSpace(login))
             {
-                throw new ArgumentNullException(nameof(login));
+                throw new ArgumentNullException("login");
             }
 
             var result = this.userManager.Find(new Filter("Login", login))?.ToList();

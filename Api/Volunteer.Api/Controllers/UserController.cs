@@ -4,7 +4,7 @@
     using Microsoft.AspNetCore.Mvc;
     using Api.ViewModels;
     using MainModule.Services.Interfaces;
-    using MainModule.Managers.Filters;
+    using Microsoft.AspNetCore.Authorization;
     using AutoMapper;
 
     [ApiController]

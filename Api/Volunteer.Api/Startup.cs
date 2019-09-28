@@ -22,6 +22,10 @@
     using AutoMapper;
     using System.Collections.Generic;
     using Api.Automapper;
+    using Microsoft.AspNetCore.Authentication.JwtBearer;
+    using Microsoft.IdentityModel.Tokens;
+    using System.Text;
+    using Volunteer.Authentity;
 
     public class Startup
     {
@@ -40,6 +44,22 @@
                 c.SwaggerDoc("v1", new Info() { Title = "My API", Version = "v1" });
             });
 
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                    .AddJwtBearer(options =>
+                    {
+                        options.RequireHttpsMetadata = false;
+                        options.TokenValidationParameters = new TokenValidationParameters
+                        {
+                            ValidateIssuer = true,
+                            ValidIssuer = "Volunteer",
+                            ValidateAudience = true,
+                            ValidAudience = "Client",
+                            ValidateLifetime = true,
+                            IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("somethink_secret_key")),
+                            ValidateIssuerSigningKey = true,
+                        };
+                    });
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddSingleton<IDataManager<Activity>, ActivityDataManager>();
@@ -55,6 +75,7 @@
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<ISimpleManager<ActivitiesUsers>, ActivitiesUsersManager>();
             services.AddTransient<IDataManager<ActivitiesUsers>, ActivitiesUsersDataManager>();
+            services.AddTransient<Authentification>();
 
             var automapperProfiles = new List<Profile>();
             automapperProfiles.Add(MainModule.Automapper.AutomapperConfig.GetAutomapperProfile());
@@ -77,16 +98,16 @@
             TempDataInitializer.Initialize();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            app.UseAuthentication();
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
             else
             {
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
