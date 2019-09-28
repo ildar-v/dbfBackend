@@ -20,6 +20,7 @@
     <ProjectReference Include="..\..\ExtentionModules\TempDataManager\TempDAL.csproj" />
     <ProjectReference Include="..\..\ExtentionModules\Volunteer.Authentity\Volunteer.Authentity.csproj" />
     <ProjectReference Include="..\..\ExtentionModules\Volunteer.Comments\Volunteer.Comments.csproj" />
+    <ProjectReference Include="..\..\Volunteer.Tags\Volunteer.Tags.csproj" />
   </ItemGroup>
 
 </Project>

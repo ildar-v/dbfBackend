@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\..\BusinessLogic\Volunteer.MainModule\Volunteer.MainModule.csproj" />
+    <ProjectReference Include="..\..\..\Volunteer.Tags\Volunteer.Tags.csproj" />
     <ProjectReference Include="..\..\Volunteer.Comments\Volunteer.Comments.csproj" />
   </ItemGroup>
 

@@ -8,6 +8,7 @@
     <ProjectReference Include="..\..\BusinessLogic\Volunteer.MainModule\Volunteer.MainModule.csproj" />
     <ProjectReference Include="..\..\Volunteer.Finances\Volunteer.Finances.csproj" />
     <ProjectReference Include="..\..\Volunteer.RatingSystem\Volunteer.RatingSystem.csproj" />
+    <ProjectReference Include="..\..\Volunteer.Tags\Volunteer.Tags.csproj" />
   </ItemGroup>
 
 </Project>

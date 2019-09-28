@@ -6,7 +6,6 @@ using Volunteer.Finances.Services.FundsService;
 
 namespace Volunteer.Api.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
     public class FundController : ControllerBase
     {
@@ -18,14 +17,14 @@ namespace Volunteer.Api.Controllers
         }
 
         // GET: api/Fund
-        [HttpGet]
+        [HttpGet("api/fund")]
         public ActionResult<IEnumerable<Fund>> Get()
         {
             return new JsonResult(fundsService.GetAllFunds());
         }
 
         // GET: api/Fund/55E9F0F5-396D-4BAB-BEEF-78ECD9EC963C
-        [HttpGet("{stringFundUid}", Name = "Get")]
+        [HttpGet("api/{stringFundUid}")]
         public ActionResult<Fund> Get(string stringFundUid)
         {
             if (string.IsNullOrEmpty(stringFundUid))
@@ -40,7 +39,7 @@ namespace Volunteer.Api.Controllers
         }
 
         // POST: api/Fund
-        [HttpPost]
+        [HttpPost("api/fund")]
         public ActionResult Post([FromBody] Fund fund)
         {
             if (fund == null)
