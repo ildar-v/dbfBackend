@@ -39,17 +39,21 @@ namespace Volunteer.Api.Controllers
 
         // POST: api/Marks
         [HttpPost]
-        public ActionResult Post([FromBody] Mark mark)
+        public ActionResult<int> Post([FromBody] Mark mark)
         {
             if (mark == null)
             {
                 return BadRequest("Пустое значение оценки");
             }
-            if (markService.SaveMark(mark))
+            else if (mark.EntityUid == Guid.Empty || mark.UserUid == Guid.Empty)
             {
-                return Ok();
+                return BadRequest("Неверное значение параметров");
             }
-            return BadRequest("Ошибка сохранения");
+            markService.SaveMark(mark);
+            // TODO: Возвращать только что загруженную оценку.
+            var raiting = markService.GetRaiting(mark.EntityUid);
+            // END TODO.
+            return Ok(raiting);
         }
     }
 }

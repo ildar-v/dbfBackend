@@ -8,6 +8,8 @@ namespace Volunteer.MainModule.Services.Interfaces
     {
         Mark GetMark(Guid userUid, Guid entityUid);
 
+        int GetRaiting(Guid entityUid);
+
         bool SaveMark(Mark mark);
     }
 }

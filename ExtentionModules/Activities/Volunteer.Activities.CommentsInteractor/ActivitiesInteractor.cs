@@ -10,6 +10,8 @@
     using Activities.DTO;
     using AutoMapper;
     using BLModels.Enums;
+    using Volunteer.Comments;
+    using Volunteer.DTO;
 
     public class ActivitiesInteractor
     {
@@ -47,26 +49,14 @@
 
             foreach (var activity in activities)
             {
-                var activitiesUsers = this.activitiesUsersSimpleManager.Find(new Filter("ActivityGuid", new object[] { activity.Uid }));
-                var volunteerUids = activitiesUsers
-                    .Where(x => x.UserType == UserTypes.Volunteer)
-                    .Select(x => x.Uid);
-                var organizerUids = activitiesUsers
-                    .Where(x => x.UserType == UserTypes.Organizer)
-                    .Select(x => x.Uid);
-                var volunteer = this.userSimpleManager.Find(new Filter("Uid", new object[] { volunteerUids }));
-                var organizer = this.userSimpleManager.Find(new Filter("Uid", new object[] { organizerUids }));
+
 
                 result.Add(new ActivityDTO
                 {
                     Activity = activity,
-                    Comments = this.commentSimpleManager.Find(new Filter(new Dictionary<string, object[]>
-                    {
-                        { "EntityUid", new object[] { activity.Uid } },
-                        { "EntityType", new object[] { typeof(Activity) } }
-                    })),
-                    Volunteers = volunteer,
-                    Organizers = organizer,
+                    //Comments = commentsDTO,
+                    //Volunteers = volunteerDTOs,
+                    //Organizers = organizerDTOs,
                     Mark = GetMark(activity)
                 });
             }
@@ -80,14 +70,44 @@
 
             if (activity != null)
             {
-                var result = new ActivityDTO
-                {
-                    Activity = activity,
-                    Comments = commentSimpleManager.Find(new Filter(new Dictionary<string, object[]>
+                var activitiesUsers = this.activitiesUsersSimpleManager.Find(new Filter("ActivityGuid", new object[] { activity.Uid }));
+                var volunteerUids = activitiesUsers
+                    .Where(x => x.UserType == UserTypes.Volunteer)
+                    .Select(x => x.UserGuid);
+                var organizerUids = activitiesUsers
+                    .Where(x => x.UserType == UserTypes.Organizer)
+                    .Select(x => x.UserGuid);
+
+
+                var users = this.userSimpleManager.Find();
+                var volunteer = users.Where(x => volunteerUids.Contains(x.Uid));
+                var organizer = users.Where(x => organizerUids.Contains(x.Uid));
+
+
+                var volunteerDTOs = mapper.Map<IEnumerable<UserDTO>>(volunteer);
+                var organizerDTOs = mapper.Map<IEnumerable<UserDTO>>(organizer);
+
+                var comments = this.commentSimpleManager.Find(new Filter(new Dictionary<string, object[]>
                     {
                         { "EntityUid", new object[] { activity.Uid } },
                         { "EntityType", new object[] { typeof(Activity) } }
-                    })),
+                    })).ToList();
+                var commentsDTO = mapper.Map<List<CommentDTO>>(comments);
+
+                foreach (var commentDTO in commentsDTO)
+                {
+                    var user = this.userSimpleManager
+                        .Find(new Filter(nameof(User.Uid), new object[] { commentDTO.AuthorUid }))
+                        .SingleOrDefault();
+                    commentDTO.Author = mapper.Map<UserDTO>(user);
+                }
+
+                var result = new ActivityDTO
+                {
+                    Activity = activity,
+                    Comments = commentsDTO,
+                    Volunteers = volunteerDTOs,
+                    Organizers = organizerDTOs,
                     Mark = GetMark(activity)
                 };
 
@@ -111,7 +131,7 @@
 
             foreach (var item in entity.AuthorUids)
             {
-                User user = this.userSimpleManager.Find()?.FirstOrDefault(a => a.Uid == item);
+                var user = this.userSimpleManager.Find()?.FirstOrDefault(a => a.Uid == item);
 
                 if (user != null)
                 {

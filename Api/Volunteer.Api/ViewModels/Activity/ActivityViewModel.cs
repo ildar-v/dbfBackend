@@ -13,7 +13,5 @@
         public DateTime AddDateTime { get; set; }
         public int CommentCount { get; set; }
         public int Mark { get; set; }
-        public IEnumerable<UserViewModel> Organizers { get; set; }
-        public IEnumerable<UserViewModel> Volunteers { get; set; }
     }
 }

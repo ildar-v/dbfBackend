@@ -11,10 +11,12 @@ namespace Volunteer.MainModule.Services.Implementations
     public class MarkService : IMarkService
     {
         private readonly ISimpleManager<Mark> markManager;
+        private readonly ISimpleManager<Mark> activityMarkManager;
 
-        public MarkService(ISimpleManager<Mark> markManager)
+        public MarkService(ISimpleManager<Mark> markManager, ISimpleManager<Mark> activityMarkManager)
         {
             this.markManager = markManager;
+            this.activityMarkManager = activityMarkManager;
         }
 
         public Mark GetMark(Guid userUid, Guid entityUid)
@@ -32,12 +34,22 @@ namespace Volunteer.MainModule.Services.Implementations
             return markManager.Find(filter).FirstOrDefault();
         }
 
+        public int GetRaiting(Guid entityUid)
+        {
+            var activityMark = 0;
+            var marks = this.activityMarkManager.Find(new Filter(new Dictionary<string, object[]>
+                    {
+                        { "EntityUid", new object[] { entityUid } },
+                    }));
+            foreach (var mark in marks)
+            {
+                activityMark += mark.Flag ? 1 : -1;
+            }
+            return activityMark;
+        }
+
         public bool SaveMark(Mark mark)
         {
-            if (mark.EntityUid == Guid.Empty || mark.UserUid == Guid.Empty)
-            {
-                return false;
-            }
             return markManager.Save(mark);
         }
     }

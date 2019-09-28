@@ -10,6 +10,7 @@
     using Api.ViewModels.Comment;
     using BLModels.Interfaces;
     using Volunteer.Api.Models;
+    using Volunteer.Comments;
 
     public class ViewModelsMapperProfile : Profile
     {
@@ -33,9 +34,7 @@
             .ForMember(avm => avm.Location, opt => opt.MapFrom(dto => dto.Activity.Location.ToString()))
             .ForMember(avm => avm.AddDateTime, opt => opt.MapFrom(dto => dto.Activity.AddDateTime))
             .ForMember(avm => avm.CommentCount, opt => opt.MapFrom(dto => dto.Comments.Count()))
-            .ForMember(avm => avm.Mark, opt => opt.MapFrom(dto => dto.Mark))
-            .ForMember(avm => avm.Organizers, opt => opt.MapFrom(dto => dto.Organizers))
-            .ForMember(avm => avm.Volunteers, opt => opt.MapFrom(dto => dto.Volunteers));
+            .ForMember(avm => avm.Mark, opt => opt.MapFrom(dto => dto.Mark));
 
             CreateMap<ActivityDTO, ActivityDetailViewModel>()
             .ForMember(lvm => lvm.Uid, opt => opt.MapFrom(vm => vm.Activity.Uid))
@@ -43,12 +42,14 @@
             .ForMember(lvm => lvm.Description, opt => opt.MapFrom(vm => vm.Activity.Description))
             .ForMember(lvm => lvm.Location, opt => opt.MapFrom(vm => vm.Activity.Location.ToString()))
             .ForMember(lvm => lvm.AddDateTime, opt => opt.MapFrom(vm => vm.Activity.AddDateTime))
-            .ForMember(lvm => lvm.Comments, opt => opt.MapFrom(vm => vm.Comments));
+            .ForMember(lvm => lvm.Comments, opt => opt.MapFrom(vm => vm.Comments))
+            .ForMember(lvm => lvm.Mark, opt => opt.MapFrom(vm => vm.Mark))
+            .ForMember(avm => avm.Organizers, opt => opt.MapFrom(dto => dto.Organizers))
+            .ForMember(avm => avm.Volunteers, opt => opt.MapFrom(dto => dto.Volunteers));
 
             CreateMap<Comment, CommentViewModel>()
             .ForMember(lvm => lvm.Text, opt => opt.MapFrom(vm => vm.Text))
             .ForMember(lvm => lvm.AuthorUid, opt => opt.MapFrom(vm => vm.AuthorUid))
-            .ForMember(lvm => lvm.Parent, opt => opt.MapFrom(vm => vm.Parent))
             .ForMember(lvm => lvm.AddDateTime, opt => opt.MapFrom(vm => vm.AddDateTime));
 
             CreateMap<ActivityCreateModel, ActivityCreateDTO>()
@@ -56,6 +57,25 @@
             .ForMember(lvm => lvm.Description, opt => opt.MapFrom(vm => vm.Description))
             .ForMember(lvm => lvm.ImageUrl, opt => opt.MapFrom(vm => vm.ImageUrl))
             .ForMember(lvm => lvm.AuthorUids, opt => opt.MapFrom(vm => vm.AuthorUids));
+
+            CreateMap<Comment, CommentDTO>()
+                .ForMember(cdto => cdto.Uid, opt => opt.MapFrom(com => com.Uid))
+                .ForMember(cdto => cdto.Text, opt => opt.MapFrom(com => com.Text))
+                .ForMember(cdto => cdto.AuthorUid, opt => opt.MapFrom(com => com.AuthorUid))
+                .ForMember(cdto => cdto.EntityUid, opt => opt.MapFrom(com => com.EntityUid))
+                .ForMember(cdto => cdto.EntityType, opt => opt.MapFrom(com => com.EntityType))
+                .ForMember(cdto => cdto.AddDateTime, opt => opt.MapFrom(com => com.AddDateTime))
+                .ForMember(cdto => cdto.Author, opt => opt.Ignore())
+                .ForMember(cdto => cdto.Mark, opt => opt.Ignore());
+
+            CreateMap<CommentDTO, CommentViewModel>()
+                .ForMember(cdto => cdto.Uid, opt => opt.MapFrom(com => com.Uid))
+                .ForMember(cdto => cdto.Text, opt => opt.MapFrom(com => com.Text))
+                .ForMember(cdto => cdto.AuthorUid, opt => opt.MapFrom(com => com.AuthorUid))
+                .ForMember(cdto => cdto.Author, opt => opt.MapFrom(com => com.Author))
+                .ForMember(cdto => cdto.EntityUid, opt => opt.MapFrom(com => com.EntityUid))
+                .ForMember(cdto => cdto.AddDateTime, opt => opt.MapFrom(com => com.AddDateTime))
+                .ForMember(cdto => cdto.Mark, opt => opt.MapFrom(com => com.Mark));
         }
     }
 }
