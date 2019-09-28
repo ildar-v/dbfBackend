@@ -50,10 +50,12 @@
             services.AddTransient<ISimpleManager<User>, UserManager>();
             services.AddTransient<IDataManager<User>, UserDataManager>();
             services.AddTransient<IUserService, UserService>();
-           
+            services.AddTransient<ISimpleManager<ActivitiesUsers>, ActivitiesUsersManager>();
+            services.AddTransient<IDataManager<ActivitiesUsers>, ActivitiesUsersDataManager>();
 
             List<Profile> automapperProfiles = new List<Profile>();
-            automapperProfiles.Add(AutomapperConfig.GetAutomapperProfile());
+            automapperProfiles.Add(MainModule.Automapper.AutomapperConfig.GetAutomapperProfile());
+            automapperProfiles.Add(Activities.Interactor.AutomapperConfig.GetAutomapperProfile());
             automapperProfiles.Add(new ViewModelsMapperProfile());
             var mappingConfig = new MapperConfiguration(mc =>
             {

@@ -7,17 +7,21 @@
     using Activities.Interactor;
     using Activities.DTO;
     using Api.ViewModels.Activity;
-    
+    using Api.Models;
+    using MainModule.Services.Interfaces;
+
     [ApiController]
     public class ActivityController : ControllerBase
     {
         private readonly ActivitiesInteractor activitiesInteractor;
+        private readonly IUserService userService;
         private readonly IMapper mapper;
 
-        public ActivityController(ActivitiesInteractor activitiesInteractor, IMapper mapper)
+        public ActivityController(ActivitiesInteractor activitiesInteractor, IUserService userService, IMapper mapper)
         {
             this.activitiesInteractor = activitiesInteractor;
             this.mapper = mapper;
+            this.userService = userService;
         }
 
         [HttpGet("api/activities")]
@@ -47,5 +51,37 @@
 
             return new NotFoundResult();
         }
+
+        [HttpPost("api/activity")]
+        public ActionResult<ActivityDetailViewModel> Post([FromBody]ActivityCreateModel activityModel)
+        {
+            var newActivity = mapper.Map<ActivityCreateDTO>(activityModel);
+            var currentUser = this.userService.FindByLogin("Max");//this.userService.FindByLogin(User.Identity.Name);
+
+            if (currentUser != null)
+            {
+                if(newActivity.AuthorUids == null)
+                {
+                    newActivity.AuthorUids = new List<Guid>();
+                }
+
+                newActivity.AuthorUids.Add(currentUser.Uid);
+
+                if(this.activitiesInteractor.Save(newActivity))
+                {
+                    return Ok(new { success = "Мероприятие создано" });
+                }
+            }
+
+            return StatusCode(403);
+        }
+
+        //[HttpPut("api/activity")]
+        //public ActionResult<ActivityDetailViewModel> Put([FromBody]ActivityUpdateModel activityModel)
+        //{
+        //    var newActivity = mapper.Map<ActivityUpdateDTO>(activityModel);
+        //    this.activitiesInteractor.Save(newActivity);
+        //    return Ok();
+        //}
     }
 }

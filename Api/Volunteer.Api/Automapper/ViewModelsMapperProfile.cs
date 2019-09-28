@@ -9,6 +9,7 @@
     using Comments.Entity;
     using Api.ViewModels.Comment;
     using BLModels.Interfaces;
+    using Volunteer.Api.Models;
 
     public class ViewModelsMapperProfile : Profile
     {
@@ -53,6 +54,12 @@
             .ForMember(lvm => lvm.Rating, opt => opt.MapFrom(vm => vm.Rating))
             .ForMember(lvm => lvm.Parent, opt => opt.MapFrom(vm => vm.Parent))
             .ForMember(lvm => lvm.AddDateTime, opt => opt.MapFrom(vm => vm.AddDateTime));
+
+            CreateMap<ActivityCreateModel, ActivityCreateDTO>()
+            .ForMember(lvm => lvm.Title, opt => opt.MapFrom(vm => vm.Title))
+            .ForMember(lvm => lvm.Description, opt => opt.MapFrom(vm => vm.Description))
+            .ForMember(lvm => lvm.ImageUrl, opt => opt.MapFrom(vm => vm.ImageUrl))
+            .ForMember(lvm => lvm.AuthorUids, opt => opt.MapFrom(vm => vm.AuthorUids));
         }
     }
 }
