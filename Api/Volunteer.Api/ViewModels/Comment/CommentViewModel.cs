@@ -9,7 +9,6 @@
         public Guid AuthorUid { get; set; }
         public UserViewModel Author { get; set; }
         public Guid EntityUid { get; set; }
-        public RatingViewModel Rating { get; set; }
         public DateTime AddDateTime { get; set; }
         public int Mark { get; set; }
     }

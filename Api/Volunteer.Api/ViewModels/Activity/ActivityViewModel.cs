@@ -10,10 +10,8 @@
         public string Title { get; set; }
         public string Description { get; set; }
         public string Location { get; set; }
-        public RatingViewModel Rating { get; set; }
         public DateTime AddDateTime { get; set; }
-        public int CommentCount { get; set; }
-        public IEnumerable<Tag> Tags { get; set; }
+        public IEnumerable<TagViewModel> Tags { get; set; }
         public int Mark { get; set; }
     }
 }

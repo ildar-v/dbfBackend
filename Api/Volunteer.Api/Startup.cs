@@ -26,6 +26,7 @@
     using Microsoft.IdentityModel.Tokens;
     using System.Text;
     using Volunteer.Authentity;
+    using Volunteer.Tags.Managers;
 
     public class Startup
     {
@@ -69,12 +70,15 @@
             services.AddTransient<IDataManager<Mark>, MarkDataManager>();
             services.AddTransient<ISimpleManager<Mark>, MarkManager>();
             services.AddTransient<IMarkService, MarkService>();
-            services.AddTransient<ActivitiesInteractor>();
             services.AddTransient<ISimpleManager<User>, UserManager>();
             services.AddTransient<IDataManager<User>, UserDataManager>();
             services.AddTransient<IUserService, UserService>();
-            services.AddTransient<ISimpleManager<ActivitiesUsers>, ActivitiesUsersManager>();
             services.AddTransient<IDataManager<ActivitiesUsers>, ActivitiesUsersDataManager>();
+            services.AddTransient<ISimpleManager<ActivitiesUsers>, ActivitiesUsersManager>();
+            services.AddTransient<IDataManager<Tags.Models.Tag>, TagsDataManager>();
+            services.AddTransient<ISimpleManager<Tags.Models.Tag>, TagManager>();
+
+            services.AddTransient<ActivitiesInteractor>();
             services.AddTransient<Authentification>();
 
             var automapperProfiles = new List<Profile>();

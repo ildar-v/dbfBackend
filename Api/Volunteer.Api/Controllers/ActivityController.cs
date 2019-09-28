@@ -10,6 +10,11 @@
     using Api.Models;
     using MainModule.Services.Interfaces;
     using Microsoft.AspNetCore.Authorization;
+    using Volunteer.Comments.Entity;
+    using Volunteer.MainModule.Managers;
+    using Volunteer.Api.ViewModels.Comment;
+    using Volunteer.MainModule.Managers.Filters;
+    using Volunteer.Api.ViewModels;
 
     [ApiController]
     public class ActivityController : ControllerBase
@@ -17,12 +22,17 @@
         private readonly ActivitiesInteractor activitiesInteractor;
         private readonly IUserService userService;
         private readonly IMapper mapper;
+        private readonly ISimpleManager<Comment> commentSimpleManager;
+        private readonly IMarkService markService;
 
-        public ActivityController(ActivitiesInteractor activitiesInteractor, IUserService userService, IMapper mapper)
+        public ActivityController(ActivitiesInteractor activitiesInteractor, IUserService userService,
+            IMapper mapper, ISimpleManager<Comment> commentSimpleManager, IMarkService markService)
         {
             this.activitiesInteractor = activitiesInteractor;
             this.mapper = mapper;
             this.userService = userService;
+            this.commentSimpleManager = commentSimpleManager;
+            this.markService = markService;
         }
 
         [HttpGet("api/activities")]
@@ -62,7 +72,7 @@
 
             foreach (var item in User.Claims)
             {
-                if(item.Type == "Login")
+                if (item.Type == "Login")
                 {
                     login = item.Value;
                     break;
@@ -73,20 +83,41 @@
 
             if (currentUser != null)
             {
-                if(newActivity.AuthorUids == null)
+                if (newActivity.AuthorUids == null)
                 {
                     newActivity.AuthorUids = new List<Guid>();
                 }
 
                 newActivity.AuthorUids.Add(currentUser.Uid);
 
-                if(this.activitiesInteractor.Save(newActivity))
+                if (this.activitiesInteractor.Save(newActivity))
                 {
                     return Ok(new { success = "Мероприятие создано" });
                 }
             }
 
             return StatusCode(403);
+        }
+
+        [Authorize]
+        [HttpPost("api/activity/comment")]
+        public ActionResult<IEnumerable<CommentViewModel>> Post([FromBody] CommentModel commentModel)
+        {
+            var comment = mapper.Map<Comment>(commentModel);
+            this.commentSimpleManager.Save(comment);
+            var comments = this.commentSimpleManager
+                .Find(
+                    new Filter(nameof(Comment.EntityUid),
+                    new object[] { commentModel.EntityUid }
+                ));
+            var commentVMs = mapper.Map<IEnumerable<CommentViewModel>>(comments);
+            foreach (var commentVM in commentVMs)
+            {
+                commentVM.Mark = this.markService.GetRaiting(commentModel.EntityUid);
+                var userDTO = this.userService.FindByUid(commentModel.AuthorUid);
+                commentVM.Author = mapper.Map<UserViewModel>(userDTO);
+            }
+            return Ok(commentVMs);
         }
     }
 }

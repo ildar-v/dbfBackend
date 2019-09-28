@@ -16,5 +16,6 @@
         public int Mark { get; set; }
         public IEnumerable<UserViewModel> Organizers { get; set; }
         public IEnumerable<UserViewModel> Volunteers { get; set; }
+        public IEnumerable<TagViewModel> Tags { get; set; }
     }
 }

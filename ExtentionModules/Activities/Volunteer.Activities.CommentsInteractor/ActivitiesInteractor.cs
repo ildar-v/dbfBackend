@@ -53,8 +53,6 @@
 
             foreach (var activity in activities)
             {
-
-
                 result.Add(new ActivityDTO
                 {
                     Activity = activity,
@@ -66,7 +64,7 @@
             return result;
         }
 
-        public ActivityDTO FindScalarByUid(Guid uid)
+        public ActivityDetailDTO FindScalarByUid(Guid uid)
         {
             var activity = this.activitySimpleManager.Find()?.FirstOrDefault(a => a.Uid == uid);
 
@@ -104,13 +102,16 @@
                     commentDTO.Author = mapper.Map<UserDTO>(user);
                 }
 
-                var result = new ActivityDTO
+                var tags = tagManager.Find().Where(t => t.EntityUids.Contains(activity.Uid));
+
+                var result = new ActivityDetailDTO
                 {
                     Activity = activity,
                     Comments = commentsDTO,
                     Volunteers = volunteerDTOs,
                     Organizers = organizerDTOs,
-                    Mark = GetMark(activity)
+                    Mark = GetMark(activity),
+                    Tags = tags
                 };
 
                 return result;
