@@ -5,26 +5,26 @@
     using Volunteer.MainModule.Managers.Filters;
     using DataManagers;
 
-    public class RatingManager : ISimpleManager<Rating>
+    public class MarkManager : ISimpleManager<Mark>
     {
-        private readonly IDataManager<Rating> dataManager;
+        private readonly IDataManager<Mark> dataManager;
 
-        public RatingManager(IDataManager<Rating> dataManager)
+        public MarkManager(IDataManager<Mark> dataManager)
         {
             this.dataManager = dataManager;
         }
 
-        public IEnumerable<Rating> Find(Filter filter = null)
+        public IEnumerable<Mark> Find(Filter filter = null)
         {
             if (filter == null)
             {
                 this.dataManager.GetAll();
             }
 
-            return dataManager.GetAll(a => filter.Check<Rating>(a));
+            return dataManager.GetAll(a => filter.Check<Mark>(a));
         }
 
-        public bool Save(Rating entity)
+        public bool Save(Mark entity)
         {
             return this.dataManager.Save(entity);
         }
