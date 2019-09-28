@@ -6,7 +6,7 @@ namespace Volunteer.MainModule.Services.Interfaces
 {
     public interface IMarkService
     {
-        IEnumerable<Mark> GetMarksByEntityUid(Guid uid);
+        Mark GetMark(Guid userUid, Guid entityUid);
 
         bool SaveMark(Mark mark);
     }

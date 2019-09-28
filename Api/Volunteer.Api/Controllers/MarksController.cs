@@ -2,6 +2,7 @@
 using Volunteer.BLModels.Entities;
 using Volunteer.MainModule.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
+using Volunteer.Api.Models;
 
 namespace Volunteer.Api.Controllers
 {
@@ -17,18 +18,23 @@ namespace Volunteer.Api.Controllers
         }
 
         // GET: api/Marks/55E9F0F5-396D-4BAB-BEEF-78ECD9EC963C
-        [HttpGet("{stringEntityUid}", Name = "Get")]
-        public ActionResult<Mark> Get(string stringEntityUid)
+        [HttpGet(Name = "Get")]
+        public ActionResult<Mark> Get([FromQuery] MarkModel model)
         {
-            if (string.IsNullOrEmpty(stringEntityUid))
+            if (string.IsNullOrEmpty(model.UserUid) && string.IsNullOrEmpty(model.EntityUid))
             {
                 return BadRequest("Пустое значение идентификатора");
             }
-            if (Guid.TryParse(stringEntityUid, out var entityUid))
+            if (!Guid.TryParse(model.UserUid, out var userUidGuid))
             {
-                return new JsonResult(markService.GetMarksByEntityUid(entityUid));
+                return BadRequest($"Идентификатор \"{model.UserUid}\" имеет неверный формат. Используйте формат UUID");
             }
-            return BadRequest($"Идентификатор \"{stringEntityUid}\" имеет неверный формат. Используйте формат UUID");
+            if (!Guid.TryParse(model.EntityUid, out var entityUidGuid))
+            {
+                return BadRequest($"Идентификатор \"{model.EntityUid}\" имеет неверный формат. Используйте формат UUID");
+            }
+
+            return new JsonResult(markService.GetMark(userUidGuid, entityUidGuid));
         }
 
         // POST: api/Marks

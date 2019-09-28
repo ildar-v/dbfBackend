@@ -48,6 +48,7 @@
             services.AddTransient<ISimpleManager<Comment>, CommentsManager>();
             services.AddTransient<IDataManager<Mark>, MarkDataManager>();
             services.AddTransient<ISimpleManager<Mark>, MarkManager>();
+            services.AddTransient<IMarkService, MarkService>();
             services.AddTransient<ActivitiesInteractor>();
             services.AddTransient<ISimpleManager<User>, UserManager>();
             services.AddTransient<IDataManager<User>, UserDataManager>();
@@ -55,7 +56,7 @@
             services.AddTransient<ISimpleManager<ActivitiesUsers>, ActivitiesUsersManager>();
             services.AddTransient<IDataManager<ActivitiesUsers>, ActivitiesUsersDataManager>();
 
-            List<Profile> automapperProfiles = new List<Profile>();
+            var automapperProfiles = new List<Profile>();
             automapperProfiles.Add(MainModule.Automapper.AutomapperConfig.GetAutomapperProfile());
             automapperProfiles.Add(Activities.Interactor.AutomapperConfig.GetAutomapperProfile());
 
