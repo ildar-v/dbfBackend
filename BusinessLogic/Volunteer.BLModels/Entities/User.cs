@@ -10,7 +10,6 @@
         public string FullName { get; set; }
         public string Login { get; set; }
         public string PasswordHash { get; set; }
-        public ICollection<ActivitiesUsers> ActivitiesUsers { get; set; }
         public string AvatarUrl { get; set; }
         public string About { get; set; }
         public IEnumerable<Mark> Marks { get; set; }

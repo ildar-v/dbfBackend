@@ -20,31 +20,31 @@
         }
 
         [HttpGet("api/users")]
-        public ActionResult<IEnumerable<UserListViewModel>> GetAll()
+        public ActionResult<IEnumerable<UserViewModel>> GetAll()
         {
-            var data = userService.Find();
-            
-            if(data != null)
+            var userDTOs = userService.Find();
+
+            if (userDTOs != null)
             {
-                var viewModel = this.mapper.Map<IEnumerable<UserListViewModel>>(data);
-                return Ok(viewModel);
+                var users = this.mapper.Map<IEnumerable<UserViewModel>>(userDTOs);
+                return Ok(users);
             }
 
             return NotFound();
         }
 
-        [HttpGet("api/user/{searchStr}")]
-        public ActionResult<IEnumerable<UserListViewModel>> Get(string searchStr)
+        [HttpGet("api/user/{uidOrLogin}")]
+        public ActionResult<UserViewModel> Get(string uidOrLogin)
         {
-            var data = this.userService.FindScalarByUidOrLogin(searchStr);
+            var userDTO = this.userService.FindScalarByUidOrLogin(uidOrLogin);
 
-            if (data != null)
+            if (userDTO != null)
             {
-                var viewModel = this.mapper.Map<UserListViewModel>(data);
-                return Ok(viewModel);
+                var user = this.mapper.Map<UserViewModel>(userDTO);
+                return Ok(user);
             }
 
-            return Ok(data);
+            return NotFound();
         }
     }
 }

@@ -40,22 +40,22 @@
             var activities = this.activitySimpleManager.Find(filter);
             var result = new List<ActivityDTO>();
 
-            if(activities == null)
+            if (activities == null)
             {
                 return null;
             }
 
             foreach (var activity in activities)
             {
-                var activityMark = 0;
-                var marks = this.activityMarkManager.Find(new Filter(new Dictionary<string, object[]>
-                    {
-                        { "EntityUid", new object[] { activity.Uid } },
-                    }));
-                foreach (var mark in marks)
-                {
-                    activityMark += mark.Flag ? 1 : -1;
-                }
+                var activitiesUsers = this.activitiesUsersSimpleManager.Find(new Filter("ActivityGuid", new object[] { activity.Uid }));
+                var volunteerUids = activitiesUsers
+                    .Where(x => x.UserType == UserTypes.Volunteer)
+                    .Select(x => x.Uid);
+                var organizerUids = activitiesUsers
+                    .Where(x => x.UserType == UserTypes.Organizer)
+                    .Select(x => x.Uid);
+                var volunteer = this.userSimpleManager.Find(new Filter("Uid", new object[] { volunteerUids }));
+                var organizer = this.userSimpleManager.Find(new Filter("Uid", new object[] { organizerUids }));
 
                 result.Add(new ActivityDTO
                 {
@@ -65,7 +65,9 @@
                         { "EntityUid", new object[] { activity.Uid } },
                         { "EntityType", new object[] { typeof(Activity) } }
                     })),
-                    Mark = activityMark
+                    Volunteers = volunteer,
+                    Organizers = organizer,
+                    Mark = GetMark(activity)
                 });
             }
 
@@ -76,7 +78,7 @@
         {
             var activity = this.activitySimpleManager.Find()?.FirstOrDefault(a => a.Uid == uid);
 
-            if(activity != null)
+            if (activity != null)
             {
                 var result = new ActivityDTO
                 {
@@ -85,7 +87,8 @@
                     {
                         { "EntityUid", new object[] { activity.Uid } },
                         { "EntityType", new object[] { typeof(Activity) } }
-                    }))
+                    })),
+                    Mark = GetMark(activity)
                 };
 
                 return result;
@@ -101,7 +104,7 @@
             activity.AddDateTime = DateTime.Now;
             List<ActivitiesUsers> roles = new List<ActivitiesUsers>();
 
-            if(entity.AuthorUids == null)
+            if (entity.AuthorUids == null)
             {
                 throw new ArgumentOutOfRangeException(nameof(entity.AuthorUids));
             }
@@ -110,19 +113,19 @@
             {
                 User user = this.userSimpleManager.Find()?.FirstOrDefault(a => a.Uid == item);
 
-                if(user != null)
+                if (user != null)
                 {
                     roles.Add(new ActivitiesUsers
                     {
                         Uid = Guid.NewGuid(),
-                        Activity = activity,
-                        User = user,
+                        ActivityGuid = activity.Uid,
+                        UserGuid = user.Uid,
                         UserType = UserTypes.Organizer
                     });
                 }
             }
 
-            if(this.activitySimpleManager.Save(activity))
+            if (this.activitySimpleManager.Save(activity))
             {
                 foreach (var item in roles)
                 {
@@ -131,6 +134,20 @@
             }
 
             return true;
+        }
+
+        private int GetMark(Activity activity)
+        {
+            var activityMark = 0;
+            var marks = this.activityMarkManager.Find(new Filter(new Dictionary<string, object[]>
+                    {
+                        { "EntityUid", new object[] { activity.Uid } },
+                    }));
+            foreach (var mark in marks)
+            {
+                activityMark += mark.Flag ? 1 : -1;
+            }
+            return activityMark;
         }
     }
 }

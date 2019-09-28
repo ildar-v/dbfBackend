@@ -7,6 +7,7 @@
             ActivitiesData.InitializeTempData();
             UserData.InitializeTempData();
             MarkData.InitializeTempData();
+            ActivitiesUsersData.InitializeTempData();
         }
     }
 }

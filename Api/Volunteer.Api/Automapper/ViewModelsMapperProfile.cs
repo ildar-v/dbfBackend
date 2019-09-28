@@ -19,7 +19,7 @@
             .ForMember(lvm => lvm.Uid, opt => opt.MapFrom(vm => vm.Uid))
             .ForMember(lvm => lvm.Value, opt => opt.MapFrom(vm => vm.Value));
 
-            CreateMap<UserDTO, UserListViewModel>()
+            CreateMap<UserDTO, UserViewModel>()
             .ForMember(lvm => lvm.Uid, opt => opt.MapFrom(vm => vm.Uid))
             .ForMember(lvm => lvm.FullName, opt => opt.MapFrom(vm => vm.FullName))
             .ForMember(lvm => lvm.Rating, opt => opt.MapFrom(vm => vm.Rating))
@@ -27,13 +27,15 @@
             .ForMember(lvm => lvm.About, opt => opt.MapFrom(vm => vm.About));
 
             CreateMap<ActivityDTO, ActivityViewModel>()
-            .ForMember(lvm => lvm.Uid, opt => opt.MapFrom(vm => vm.Activity.Uid))
-            .ForMember(lvm => lvm.Title, opt => opt.MapFrom(vm => vm.Activity.Title))
-            .ForMember(lvm => lvm.Description, opt => opt.MapFrom(vm => vm.Activity.Description))
-            .ForMember(lvm => lvm.Location, opt => opt.MapFrom(vm => vm.Activity.Location.ToString()))
-            .ForMember(lvm => lvm.AddDateTime, opt => opt.MapFrom(vm => vm.Activity.AddDateTime))
-            .ForMember(lvm => lvm.CommentCount, opt => opt.MapFrom(vm => vm.Comments.Count()))
-            .ForMember(lvm => lvm.Mark, opt => opt.MapFrom(vm => vm.Mark));
+            .ForMember(avm => avm.Uid, opt => opt.MapFrom(dto => dto.Activity.Uid))
+            .ForMember(avm => avm.Title, opt => opt.MapFrom(dto => dto.Activity.Title))
+            .ForMember(avm => avm.Description, opt => opt.MapFrom(dto => dto.Activity.Description))
+            .ForMember(avm => avm.Location, opt => opt.MapFrom(dto => dto.Activity.Location.ToString()))
+            .ForMember(avm => avm.AddDateTime, opt => opt.MapFrom(dto => dto.Activity.AddDateTime))
+            .ForMember(avm => avm.CommentCount, opt => opt.MapFrom(dto => dto.Comments.Count()))
+            .ForMember(avm => avm.Mark, opt => opt.MapFrom(dto => dto.Mark))
+            .ForMember(avm => avm.Organizers, opt => opt.MapFrom(dto => dto.Organizers))
+            .ForMember(avm => avm.Volunteers, opt => opt.MapFrom(dto => dto.Volunteers));
 
             CreateMap<ActivityDTO, ActivityDetailViewModel>()
             .ForMember(lvm => lvm.Uid, opt => opt.MapFrom(vm => vm.Activity.Uid))

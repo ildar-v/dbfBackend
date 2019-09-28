@@ -7,8 +7,8 @@
     public class ActivitiesUsers : IEntity
     {
         public Guid Uid { get; set; }
-        public User User { get; set; }
-        public Activity Activity { get; set; }
+        public Guid UserGuid { get; set; }
+        public Guid ActivityGuid { get; set; }
         public UserTypes UserType { get; set; }
     }
 }

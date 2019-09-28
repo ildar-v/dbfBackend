@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class UserListViewModel
+    public class UserViewModel
     {
         public Guid Uid { get; set; }
         public string FullName { get; set; }

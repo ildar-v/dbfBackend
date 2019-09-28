@@ -1,6 +1,7 @@
 ﻿namespace Volunteer.Api.ViewModels.Activity
 {
     using System;
+    using System.Collections.Generic;
 
     public class ActivityViewModel
     {
@@ -12,5 +13,7 @@
         public DateTime AddDateTime { get; set; }
         public int CommentCount { get; set; }
         public int Mark { get; set; }
+        public IEnumerable<UserViewModel> Organizers { get; set; }
+        public IEnumerable<UserViewModel> Volunteers { get; set; }
     }
 }

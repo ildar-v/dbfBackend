@@ -13,5 +13,6 @@
         public RatingViewModel Rating { get; set; }
         public DateTime AddDateTime { get; set; }
         public IEnumerable<CommentViewModel> Comments { get; set; }
+        public int Mark { get; set; }
     }
 }
