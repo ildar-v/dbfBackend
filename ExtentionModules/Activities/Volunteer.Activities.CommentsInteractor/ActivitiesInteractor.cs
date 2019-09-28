@@ -10,6 +10,7 @@
     using Activities.DTO;
     using AutoMapper;
     using BLModels.Enums;
+    using Volunteer.Tags.Models;
 
     public class ActivitiesInteractor
     {
@@ -18,6 +19,7 @@
         private readonly ISimpleManager<ActivitiesUsers> activitiesUsersSimpleManager;
         private readonly ISimpleManager<User> userSimpleManager;
         private readonly ISimpleManager<Mark> activityMarkManager;
+        private readonly ISimpleManager<Tag> tagManager;
         private readonly IMapper mapper;
 
         public ActivitiesInteractor(ISimpleManager<Comment> commentSimpleManager,
@@ -25,6 +27,7 @@
                                     ISimpleManager<ActivitiesUsers> activitiesUsersSimpleManager,
                                     ISimpleManager<User> userSimpleManager,
                                     ISimpleManager<Mark> activityMarkManager,
+                                    ISimpleManager<Tag> tagManager,
                                     IMapper mapper)
         {
             this.commentSimpleManager = commentSimpleManager;
@@ -32,6 +35,7 @@
             this.activitiesUsersSimpleManager = activitiesUsersSimpleManager;
             this.userSimpleManager = userSimpleManager;
             this.activityMarkManager = activityMarkManager;
+            this.tagManager = tagManager;
             this.mapper = mapper;
         }
 
@@ -67,7 +71,8 @@
                     })),
                     Volunteers = volunteer,
                     Organizers = organizer,
-                    Mark = GetMark(activity)
+                    Mark = GetMark(activity),
+                    Tags = tagManager.Find().Where(t => t.EntityUids.Contains(activity.Uid))
                 });
             }
 

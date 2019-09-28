@@ -35,7 +35,8 @@
             .ForMember(avm => avm.CommentCount, opt => opt.MapFrom(dto => dto.Comments.Count()))
             .ForMember(avm => avm.Mark, opt => opt.MapFrom(dto => dto.Mark))
             .ForMember(avm => avm.Organizers, opt => opt.MapFrom(dto => dto.Organizers))
-            .ForMember(avm => avm.Volunteers, opt => opt.MapFrom(dto => dto.Volunteers));
+            .ForMember(avm => avm.Volunteers, opt => opt.MapFrom(dto => dto.Volunteers))
+            .ForMember(avm => avm.Tags, opt => opt.MapFrom(dto => dto.Tags));
 
             CreateMap<ActivityDTO, ActivityDetailViewModel>()
             .ForMember(lvm => lvm.Uid, opt => opt.MapFrom(vm => vm.Activity.Uid))

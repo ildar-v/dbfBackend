@@ -3,6 +3,7 @@
     using System.Collections.Generic;
     using BLModels.Entities;
     using Comments.Entity;
+    using Volunteer.Tags.Models;
 
     public class ActivityDTO
     {
@@ -11,5 +12,6 @@
         public IEnumerable<User> Organizers { get; set; }
         public IEnumerable<User> Volunteers { get; set; }
         public int Mark { get; set; }
+        public IEnumerable<Tag> Tags { get; set; }
     }
 }

@@ -41,6 +41,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volanteer.BlockchainClient"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volunteer.Authentity", "ExtentionModules\Volunteer.Authentity\Volunteer.Authentity.csproj", "{D5513921-6CFE-4E6B-B28B-15AA603349E6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Volunteer.Tags", "Volunteer.Tags\Volunteer.Tags.csproj", "{FCD42035-E42A-411B-91BD-7201427F3C2A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -107,6 +109,10 @@ Global
 		{D5513921-6CFE-4E6B-B28B-15AA603349E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D5513921-6CFE-4E6B-B28B-15AA603349E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D5513921-6CFE-4E6B-B28B-15AA603349E6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCD42035-E42A-411B-91BD-7201427F3C2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCD42035-E42A-411B-91BD-7201427F3C2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCD42035-E42A-411B-91BD-7201427F3C2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCD42035-E42A-411B-91BD-7201427F3C2A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -128,6 +134,7 @@ Global
 		{5416A69C-5A10-4AC6-9DA1-62A2F1B87CCC} = {B51CB5F8-072D-4ACB-83F0-B43FA84C9E90}
 		{F14E8843-C33A-43D3-9DCA-571277EAE766} = {B51CB5F8-072D-4ACB-83F0-B43FA84C9E90}
 		{D5513921-6CFE-4E6B-B28B-15AA603349E6} = {B51CB5F8-072D-4ACB-83F0-B43FA84C9E90}
+		{FCD42035-E42A-411B-91BD-7201427F3C2A} = {B51CB5F8-072D-4ACB-83F0-B43FA84C9E90}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {434BA4C3-2F92-457E-9D1F-7724A5BA279D}
