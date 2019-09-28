@@ -28,12 +28,13 @@
         public IActionResult Login([FromBody]PasswordLoginModel model)
         {
             var tokenArgs = this.authentification.PasswordLogin(model);
-            JwtSecurityToken token = this.GetJwtToken(tokenArgs);
 
-            if(token == null)
+            if (tokenArgs == null)
             {
                 return StatusCode(403, "Введен неверный логин или пароль");
             }
+
+            JwtSecurityToken token = this.GetJwtToken(tokenArgs);
 
             var encodedToken = new JwtSecurityTokenHandler().WriteToken(token);
             return Ok(new { uid = tokenArgs.UserUid, access_token = encodedToken });
