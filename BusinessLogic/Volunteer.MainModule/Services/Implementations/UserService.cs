@@ -51,5 +51,46 @@
 
             return null;
         }
+
+        public UserDTO FindByUid(Guid uid)
+        {
+            var user = this.userManager.Find()?.FirstOrDefault(u => u.Uid == uid);
+            var result = this.mapper.Map<UserDTO>(user);
+            return result;
+        }
+
+        public UserDTO FindScalarByUidOrLogin(string searchStr)
+        {
+            List<User> users = null;
+
+            try
+            {
+                users = this.userManager.Find(new Filter(new Dictionary<string, object[]>
+                {
+                    { "Uid", new object[] { new Guid(searchStr) } }
+                })).ToList();
+            }
+            catch(FormatException) { }
+
+            if (users != null && users.Any())
+            {
+                var result = this.mapper.Map<UserDTO>(users[0]);
+                return result;
+            }
+
+            users = this.userManager.Find(new Filter(new Dictionary<string, object[]>
+            {
+                { "Login", new object[] { searchStr } }
+            })).ToList();
+
+            if (users != null && users.Any())
+            {
+                var result = this.mapper.Map<UserDTO>(users[0]);
+                return result;
+            }
+
+            return null;
+        }
     }
 }
+ 

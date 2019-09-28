@@ -15,7 +15,7 @@ namespace TempDAL
             tempStore = new List<User>();
             tempStore.Add(new User
             {
-                Uid = Guid.NewGuid(),
+                Uid = new Guid("e281797e-1425-4b21-8650-3407d01cea00"),
                 Login = "Max",
                 FullName = "Карабаев Максим Олегович",
                 PasswordHash = "123456",
@@ -36,7 +36,7 @@ namespace TempDAL
             });
             tempStore.Add(new User
             {
-                Uid = Guid.NewGuid(),
+                Uid = new Guid("4db193ce-c7c4-4674-99c8-9c2e9bd5ee9a"),
                 Login = "Ild",
                 FullName = "Вазетдинов Ильдар Радулевич",
                 PasswordHash = "123456",
