@@ -1,9 +1,8 @@
-﻿namespace Volunteer.BLModels.Entities
+﻿namespace Volunteer.Api.ViewModels
 {
     using System;
-    using Interfaces; 
 
-    public class Rating : IRating
+    public class RatingViewModel
     {
         public Guid Uid { get; set; }
         public double Value { get; set; }

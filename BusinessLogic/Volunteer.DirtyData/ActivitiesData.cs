@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using TempDAL;
-using Volunteer.BLModels.Entities;
-using Volunteer.Comments.DataManager;
-using Volunteer.Comments.Entity;
-
-namespace Volunteer.DirtyData
+﻿namespace Volunteer.DirtyData
 {
+    using System;
+    using System.Collections.Generic;
+    using TempDAL;
+    using Volunteer.BLModels.Entities;
+    using Volunteer.Comments.DataManager;
+    using Volunteer.Comments.Entity;
+
     public static class ActivitiesData
     {
         private static Guid ActivityUid1 = new Guid("75d60dd6-48bd-454c-b2d2-ecd959d7d90a");

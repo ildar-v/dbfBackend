@@ -5,7 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Volunteer.BLModels\Volunteer.BLModels.csproj" />
+    <ProjectReference Include="..\Volunteer.DTO\Volunteer.DTO\Volunteer.DTO.csproj" />
   </ItemGroup>
 
 </Project>

@@ -10,7 +10,7 @@ namespace TempDAL
     {
         private static List<User> tempStore = new List<User>();
 
-        UserDataManager()
+        public UserDataManager()
         {
             tempStore = new List<User>();
             tempStore.Add(new User
@@ -19,17 +19,41 @@ namespace TempDAL
                 Login = "Max",
                 FullName = "Карабаев Максим Олегович",
                 PasswordHash = "123456",
-                ActivitiesUsers = null,
-                Rating = null
+                ActivitiesUsers = new List<ActivitiesUsers>
+                {
+                    new ActivitiesUsers
+                    {
+                        Uid = Guid.NewGuid()
+                    }
+                },
+                Rating = new Rating
+                {
+                    Uid = Guid.NewGuid(),
+                    Value = 10
+                },
+                About = "Это Карабаев Максим Олегович - программист RDDS",
+                AvatarUrl = "https://avatars.mds.yandex.net/get-pdb/28866/bc1b684a-8405-4c23-b76a-25648d529c52/s1200"
             });
             tempStore.Add(new User
             {
                 Uid = Guid.NewGuid(),
-                Login = "Max",
-                FullName = "Карабаев Максим Олегович",
+                Login = "Ild",
+                FullName = "Вазетдинов Ильдар Радулевич",
                 PasswordHash = "123456",
-                ActivitiesUsers = null,
-                Rating = null
+                ActivitiesUsers = new List<ActivitiesUsers>
+                {
+                    new ActivitiesUsers
+                    {
+                        Uid = Guid.NewGuid()
+                    }
+                },
+                Rating = new Rating
+                {
+                    Uid = Guid.NewGuid(),
+                    Value = 10
+                },
+                About = "Это Ильдар - воображаемый друг",
+                AvatarUrl = "https://avatars.mds.yandex.net/get-pdb/480866/719d9723-eac6-40c8-aab3-3c71a0b25a1e/s1200"
             });
         }
 

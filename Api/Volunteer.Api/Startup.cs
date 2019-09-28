@@ -1,22 +1,28 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Swashbuckle.AspNetCore.Swagger;
-using TempDAL;
-using Volunteer.Activities.Interactor;
-using Volunteer.BLModels.Entities;
-using Volunteer.Comments.DataManager;
-using Volunteer.Comments.Entity;
-using Volunteer.Comments.Manager;
-using Volunteer.DirtyData;
-using Volunteer.MainModule.Managers;
-using Volunteer.MainModule.Managers.DataManagers;
-using Volunteer.MainModule.Managers.Implementations;
-
-namespace Volunteer.Api
+﻿namespace Volunteer.Api
 {
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Swashbuckle.AspNetCore.Swagger;
+    using TempDAL;
+    using Activities.Interactor;
+    using BLModels.Entities;
+    using Comments.DataManager;
+    using Comments.Entity;
+    using Comments.Manager;
+    using DirtyData;
+    using MainModule.Managers;
+    using MainModule.Managers.DataManagers;
+    using MainModule.Managers.Implementations;
+    using MainModule.Services.Interfaces;
+    using MainModule.Services.Implementations;
+    using Volunteer.MainModule.Automapper;
+    using AutoMapper;
+    using System.Collections.Generic;
+    using Api.Automapper;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -41,6 +47,27 @@ namespace Volunteer.Api
             services.AddTransient<IDataManager<Comment>, CommentDataManager>();
             services.AddTransient<ISimpleManager<Comment>, CommentsManager>();
             services.AddTransient<ActivitiesInteractor>();
+            services.AddTransient<ISimpleManager<User>, UserManager>();
+            services.AddTransient<IDataManager<User>, UserDataManager>();
+            services.AddTransient<IUserService, UserService>();
+           
+
+            List<Profile> automapperProfiles = new List<Profile>();
+            automapperProfiles.Add(AutomapperConfig.GetAutomapperProfile());
+            automapperProfiles.Add(new ViewModelsMapperProfile());
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                foreach (var item in automapperProfiles)
+                {
+                    mc.AddProfile(item);
+                }
+                mc.AllowNullCollections = true;
+                mc.AllowNullDestinationValues = true;
+                mc.EnableNullPropagationForQueryMapping = true;
+            });
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
+
             ActivitiesData.InitializeTempData();
         }
 

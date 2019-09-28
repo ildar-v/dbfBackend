@@ -1,9 +1,8 @@
-﻿namespace Volunteer.BLModels.Entities
+﻿namespace Volunteer.DTO
 {
     using System;
-    using Interfaces; 
 
-    public class Rating : IRating
+    public class RatingDTO
     {
         public Guid Uid { get; set; }
         public double Value { get; set; }
