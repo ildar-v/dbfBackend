@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.28917.181
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.645
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volunteer.BLModels", "BusinessLogic\Volunteer.BLModels\Volunteer.BLModels.csproj", "{62DB4852-F017-40FC-BFF9-12EE2F68ADDF}"
 EndProject
@@ -33,7 +33,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volunteer.DTO", "BusinessLo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volunteer.RatingSystem", "Volunteer.RatingSystem\Volunteer.RatingSystem.csproj", "{1377D20D-74F2-4766-B072-0723D7BA250B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Volunteer.Authentity", "ExtentionModules\Volunteer.Authentity\Volunteer.Authentity.csproj", "{9DF3773A-521C-42B4-ACB9-060C5926BE96}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Volunteer.Finances", "Volunteer.Finances\Volunteer.Finances.csproj", "{AD1FB7C8-C39B-44F7-87EB-E19937A9A805}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Volunteer.BlockChain", "Volunteer.BlockChain\Volunteer.BlockChain.csproj", "{5416A69C-5A10-4AC6-9DA1-62A2F1B87CCC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Volanteer.BlockchainClient", "Volanteer.BlockchainClient\Volanteer.BlockchainClient.csproj", "{F14E8843-C33A-43D3-9DCA-571277EAE766}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,10 +89,18 @@ Global
 		{1377D20D-74F2-4766-B072-0723D7BA250B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1377D20D-74F2-4766-B072-0723D7BA250B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1377D20D-74F2-4766-B072-0723D7BA250B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9DF3773A-521C-42B4-ACB9-060C5926BE96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9DF3773A-521C-42B4-ACB9-060C5926BE96}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9DF3773A-521C-42B4-ACB9-060C5926BE96}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9DF3773A-521C-42B4-ACB9-060C5926BE96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AD1FB7C8-C39B-44F7-87EB-E19937A9A805}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD1FB7C8-C39B-44F7-87EB-E19937A9A805}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD1FB7C8-C39B-44F7-87EB-E19937A9A805}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD1FB7C8-C39B-44F7-87EB-E19937A9A805}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5416A69C-5A10-4AC6-9DA1-62A2F1B87CCC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5416A69C-5A10-4AC6-9DA1-62A2F1B87CCC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5416A69C-5A10-4AC6-9DA1-62A2F1B87CCC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5416A69C-5A10-4AC6-9DA1-62A2F1B87CCC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F14E8843-C33A-43D3-9DCA-571277EAE766}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F14E8843-C33A-43D3-9DCA-571277EAE766}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F14E8843-C33A-43D3-9DCA-571277EAE766}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F14E8843-C33A-43D3-9DCA-571277EAE766}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -106,7 +118,9 @@ Global
 		{D5B08EBF-DCB6-416E-8585-402A6731365F} = {A358557A-CCB0-4E7F-97EE-31F5650FA93B}
 		{BCC70CEE-0D03-490A-B845-CE9654449955} = {A358557A-CCB0-4E7F-97EE-31F5650FA93B}
 		{1377D20D-74F2-4766-B072-0723D7BA250B} = {A358557A-CCB0-4E7F-97EE-31F5650FA93B}
-		{9DF3773A-521C-42B4-ACB9-060C5926BE96} = {B51CB5F8-072D-4ACB-83F0-B43FA84C9E90}
+		{AD1FB7C8-C39B-44F7-87EB-E19937A9A805} = {B51CB5F8-072D-4ACB-83F0-B43FA84C9E90}
+		{5416A69C-5A10-4AC6-9DA1-62A2F1B87CCC} = {B51CB5F8-072D-4ACB-83F0-B43FA84C9E90}
+		{F14E8843-C33A-43D3-9DCA-571277EAE766} = {B51CB5F8-072D-4ACB-83F0-B43FA84C9E90}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {434BA4C3-2F92-457E-9D1F-7724A5BA279D}
