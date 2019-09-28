@@ -20,5 +20,16 @@
             var result = JsonConvert.DeserializeObject<volunteers>(content);
             return result;
         }
+
+        public events GetEvents()
+        {
+            var client = new RestClient("https://api.dobrf.ru");
+            var request = new RestRequest("open-api/v1/events", Method.GET);
+            request.AddHeader("accept", "application/json");
+            IRestResponse response = client.Execute(request);
+            var content = response.Content;
+            var result = JsonConvert.DeserializeObject<events>(content);
+            return result;
+        }
     }
 }

@@ -1,5 +1,6 @@
 ﻿namespace Volunteer.DirtyData
 {
+    using DobrfDownloadModule;
     using System;
     using System.Collections.Generic;
     using TempDAL;
@@ -15,6 +16,27 @@
 
         static ActivitiesData()
         {
+            DobrfDownloader dobrfDownloader = new DobrfDownloader();
+            var events = dobrfDownloader.GetEvents();
+            List<Activity> tempActivityStore = new List<Activity>();
+
+            foreach (var item in events.results)
+            {
+                tempActivityStore.Add(new Activity
+                {
+                    Description = item.slug,
+                    ImageUrl = item.image?.original,
+                    Title = item.name,
+                    AddDateTime = DateTime.Now + new TimeSpan(new Random().Next(0, 20), 0, 0),
+                    EndDateTime = item.end_date,
+                    StartDateTime = item.start_date,
+                    Uid = Guid.NewGuid()
+                });
+            }
+            tempActivityStore[0].Uid = ActivityUid1;
+            tempActivityStore[1].Uid = ActivityUid2;
+            tempActivityStore[2].Uid = ActivityUid3;
+
             ActivityDataManager.tempStore = tempActivityStore;
 
             var tempActivityCommentStore = new List<Comment> {
@@ -60,30 +82,30 @@
             CommentDataManager.tempStore = tempActivityCommentStore;
         }
 
-        private static List<Activity> tempActivityStore = new List<Activity>()
-        {
-            new Activity()
-            {
-                Uid = ActivityUid1,
-                Description = "Какое-то описание",
-                Title = "Какое-то название",
-                AddDateTime = DateTime.Now
-            },
-            new Activity()
-            {
-                Uid = ActivityUid2,
-                Description = "Какое-то описание-1",
-                Title = "Какое-то название-1",
-                AddDateTime = DateTime.Now
-            },
-            new Activity()
-            {
-                Uid = ActivityUid3,
-                Description = "Какое-то описание-2",
-                Title = "Какое-то название-2",
-                AddDateTime = DateTime.Now
-            }
-        };
+        //private static List<Activity> tempActivityStore = new List<Activity>()
+        //{
+        //    new Activity()
+        //    {
+        //        Uid = ActivityUid1,
+        //        Description = "Какое-то описание",
+        //        Title = "Какое-то название",
+        //        AddDateTime = DateTime.Now
+        //    },
+        //    new Activity()
+        //    {
+        //        Uid = ActivityUid2,
+        //        Description = "Какое-то описание-1",
+        //        Title = "Какое-то название-1",
+        //        AddDateTime = DateTime.Now
+        //    },
+        //    new Activity()
+        //    {
+        //        Uid = ActivityUid3,
+        //        Description = "Какое-то описание-2",
+        //        Title = "Какое-то название-2",
+        //        AddDateTime = DateTime.Now
+        //    }
+        //};
 
         public static void InitializeTempData()
         {
