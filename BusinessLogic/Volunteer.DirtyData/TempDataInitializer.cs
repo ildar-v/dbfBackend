@@ -5,9 +5,11 @@
         public static void Initialize()
         {
             ActivitiesData.InitializeTempData();
-            UserData.InitializeTempData();
+            //UserData.InitializeTempData();
             MarkData.InitializeTempData();
             ActivitiesUsersData.InitializeTempData();
+            TagsData.InitializeTempData();
+            DobrfData.InitializeTempData();
         }
     }
 }

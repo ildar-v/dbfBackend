@@ -17,7 +17,6 @@
     public class AccountController : ControllerBase
     {
         private readonly Authentification authentification;
-        private readonly IMapper mapper;
 
         public AccountController(Authentification authentification)
         {
