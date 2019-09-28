@@ -9,6 +9,7 @@
     using Api.ViewModels.Activity;
     using Api.Models;
     using MainModule.Services.Interfaces;
+    using Microsoft.AspNetCore.Authorization;
 
     [ApiController]
     public class ActivityController : ControllerBase
@@ -52,11 +53,23 @@
             return new NotFoundResult();
         }
 
+        [Authorize]
         [HttpPost("api/activity")]
         public ActionResult<ActivityDetailViewModel> Post([FromBody]ActivityCreateModel activityModel)
         {
             var newActivity = mapper.Map<ActivityCreateDTO>(activityModel);
-            var currentUser = this.userService.FindByLogin("Max");//this.userService.FindByLogin(User.Identity.Name);
+            string login = string.Empty;
+
+            foreach (var item in User.Claims)
+            {
+                if(item.Type == "Login")
+                {
+                    login = item.Value;
+                    break;
+                }
+            }
+
+            var currentUser = this.userService.FindByLogin(login);
 
             if (currentUser != null)
             {
@@ -75,13 +88,5 @@
 
             return StatusCode(403);
         }
-
-        //[HttpPut("api/activity")]
-        //public ActionResult<ActivityDetailViewModel> Put([FromBody]ActivityUpdateModel activityModel)
-        //{
-        //    var newActivity = mapper.Map<ActivityUpdateDTO>(activityModel);
-        //    this.activitiesInteractor.Save(newActivity);
-        //    return Ok();
-        //}
     }
 }

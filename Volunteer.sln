@@ -33,6 +33,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volunteer.DTO", "BusinessLo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volunteer.RatingSystem", "Volunteer.RatingSystem\Volunteer.RatingSystem.csproj", "{1377D20D-74F2-4766-B072-0723D7BA250B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Volunteer.Authentity", "ExtentionModules\Volunteer.Authentity\Volunteer.Authentity.csproj", "{9DF3773A-521C-42B4-ACB9-060C5926BE96}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,10 @@ Global
 		{1377D20D-74F2-4766-B072-0723D7BA250B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1377D20D-74F2-4766-B072-0723D7BA250B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1377D20D-74F2-4766-B072-0723D7BA250B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DF3773A-521C-42B4-ACB9-060C5926BE96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DF3773A-521C-42B4-ACB9-060C5926BE96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DF3773A-521C-42B4-ACB9-060C5926BE96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DF3773A-521C-42B4-ACB9-060C5926BE96}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -100,6 +106,7 @@ Global
 		{D5B08EBF-DCB6-416E-8585-402A6731365F} = {A358557A-CCB0-4E7F-97EE-31F5650FA93B}
 		{BCC70CEE-0D03-490A-B845-CE9654449955} = {A358557A-CCB0-4E7F-97EE-31F5650FA93B}
 		{1377D20D-74F2-4766-B072-0723D7BA250B} = {A358557A-CCB0-4E7F-97EE-31F5650FA93B}
+		{9DF3773A-521C-42B4-ACB9-060C5926BE96} = {B51CB5F8-072D-4ACB-83F0-B43FA84C9E90}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {434BA4C3-2F92-457E-9D1F-7724A5BA279D}
