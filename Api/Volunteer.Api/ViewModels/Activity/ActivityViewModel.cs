@@ -2,7 +2,7 @@
 {
     using System;
 
-    public class ActivityListViewModel
+    public class ActivityViewModel
     {
         public Guid Uid { get; set; }
         public string Title { get; set; }

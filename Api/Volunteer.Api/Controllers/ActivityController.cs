@@ -7,7 +7,7 @@
     using Activities.Interactor;
     using Activities.DTO;
     using Api.ViewModels.Activity;
-    
+
     [ApiController]
     public class ActivityController : ControllerBase
     {
@@ -25,9 +25,9 @@
         {
             IEnumerable<ActivityDTO> data = this.activitiesInteractor.Find();
 
-            if(data != null)
+            if (data != null)
             {
-                var result = mapper.Map<IEnumerable<ActivityListViewModel>>(data);
+                var result = mapper.Map<IEnumerable<ActivityViewModel>>(data);
                 return Ok(result);
             }
 

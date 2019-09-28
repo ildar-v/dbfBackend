@@ -25,7 +25,7 @@
             .ForMember(lvm => lvm.AvatarUrl, opt => opt.MapFrom(vm => vm.AvatarUrl))
             .ForMember(lvm => lvm.About, opt => opt.MapFrom(vm => vm.About));
 
-            CreateMap<ActivityDTO, ActivityListViewModel>()
+            CreateMap<ActivityDTO, ActivityViewModel>()
             .ForMember(lvm => lvm.Uid, opt => opt.MapFrom(vm => vm.Activity.Uid))
             .ForMember(lvm => lvm.Title, opt => opt.MapFrom(vm => vm.Activity.Title))
             .ForMember(lvm => lvm.Description, opt => opt.MapFrom(vm => vm.Activity.Description))
