@@ -23,8 +23,7 @@
                 Uid = Guid.NewGuid(),
                 Text = "Тестовый коммент1 у активити",
                 AddDateTime = DateTime.Now,
-                AuthorUid = Guid.Empty,
-                Parent = null,
+                AuthorUid = UserData.UserUid1,
                 EntityType = typeof(Activity),
                 EntityUid = ActivityUid2
             },
@@ -33,8 +32,7 @@
                 Uid = Guid.NewGuid(),
                 Text = "Тестовый коммент2 у активити",
                 AddDateTime = DateTime.Now,
-                AuthorUid = Guid.Empty,
-                Parent = null,
+                AuthorUid = UserData.UserUid2,
                 EntityType = typeof(Activity),
                 EntityUid = ActivityUid2
             }
@@ -44,8 +42,7 @@
                 Uid = Guid.NewGuid(),
                 Text = "Тестовый коммент3 у активити",
                 AddDateTime = DateTime.Now,
-                AuthorUid = Guid.Empty,
-                Parent = null,
+                AuthorUid = UserData.UserUid1,
                 EntityType = typeof(Activity),
                 EntityUid = ActivityUid3
             };
@@ -54,8 +51,7 @@
                 Uid = Guid.NewGuid(),
                 Text = "Тестовый коммент4 у активити",
                 AddDateTime = DateTime.Now,
-                AuthorUid = Guid.Empty,
-                Parent = comment3,
+                AuthorUid = UserData.UserUid2,
                 EntityType = typeof(Activity),
                 EntityUid = ActivityUid3
             };

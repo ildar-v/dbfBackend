@@ -13,7 +13,6 @@ namespace Volunteer.Comments.Entity
         public Guid AuthorUid { get; set; }
         public Guid EntityUid { get; set; }
         public Type EntityType { get; set; }
-        public Comment Parent { get; set; }
         public DateTime AddDateTime { get; set; }
         public IEnumerable<Mark> Marks { get; set; }
     }

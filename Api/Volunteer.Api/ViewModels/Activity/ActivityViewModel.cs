@@ -15,7 +15,5 @@
         public int CommentCount { get; set; }
         public IEnumerable<Tag> Tags { get; set; }
         public int Mark { get; set; }
-        public IEnumerable<UserViewModel> Organizers { get; set; }
-        public IEnumerable<UserViewModel> Volunteers { get; set; }
     }
 }
