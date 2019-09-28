@@ -36,7 +36,7 @@
             }
 
             var encodedToken = new JwtSecurityTokenHandler().WriteToken(token);
-            return Ok(new { access_token = encodedToken });
+            return Ok(new { uid = tokenArgs.UserUid, access_token = encodedToken });
         }
 
 

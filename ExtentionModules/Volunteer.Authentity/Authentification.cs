@@ -35,7 +35,8 @@
                                     now,
                                     this.GetUserClaims(user),
                                     now.Add(TimeSpan.FromMinutes(AuthOptions.LifeTimeInMinutes)),
-                                    AuthOptions.Key);
+                                    AuthOptions.Key,
+                                    user.Uid);
         }
 
         private IEnumerable<Claim> GetUserClaims(UserDTO user)
