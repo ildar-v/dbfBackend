@@ -5,28 +5,45 @@
     using Api.ViewModels;
     using MainModule.Services.Interfaces;
     using MainModule.Managers.Filters;
+    using AutoMapper;
 
     [ApiController]
     public class UserController : ControllerBase
     {
         private readonly IUserService userService;
+        private readonly IMapper mapper;
 
-        public UserController(IUserService userService)
+        public UserController(IUserService userService, IMapper mapper)
         {
             this.userService = userService;
+            this.mapper = mapper;
         }
 
         [HttpGet("api/users")]
         public ActionResult<IEnumerable<UserListViewModel>> GetAll()
         {
             var data = userService.Find();
-            return Ok(data);
+            
+            if(data != null)
+            {
+                var viewModel = this.mapper.Map<IEnumerable<UserListViewModel>>(data);
+                return Ok(viewModel);
+            }
+
+            return NotFound();
         }
 
         [HttpGet("api/user/{searchStr}")]
-        public ActionResult<IEnumerable<UserListViewModel>> GetAll(string searchStr)
+        public ActionResult<IEnumerable<UserListViewModel>> Get(string searchStr)
         {
             var data = this.userService.FindScalarByUidOrLogin(searchStr);
+
+            if (data != null)
+            {
+                var viewModel = this.mapper.Map<UserListViewModel>(data);
+                return Ok(viewModel);
+            }
+
             return Ok(data);
         }
     }
