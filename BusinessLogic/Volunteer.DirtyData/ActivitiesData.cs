@@ -9,9 +9,9 @@
 
     public static class ActivitiesData
     {
-        private static Guid ActivityUid1 = new Guid("75d60dd6-48bd-454c-b2d2-ecd959d7d90a");
-        private static Guid ActivityUid2 = new Guid("11248ba9-953e-4605-ba8e-9ee0fa1a4c65");
-        private static Guid ActivityUid3 = new Guid("c84f66e7-eab8-4429-bbb7-9ac4250403d5");
+        public static Guid ActivityUid1 = new Guid("75d60dd6-48bd-454c-b2d2-ecd959d7d90a");
+        public static Guid ActivityUid2 = new Guid("11248ba9-953e-4605-ba8e-9ee0fa1a4c65");
+        public static Guid ActivityUid3 = new Guid("c84f66e7-eab8-4429-bbb7-9ac4250403d5");
 
         static ActivitiesData()
         {

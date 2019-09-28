@@ -8,7 +8,7 @@
 
     public class MarkDataManager : IDataManager<Mark>
     {
-        private static List<Mark> tempStore = new List<Mark>();
+        public static List<Mark> tempStore;
 
         public IEnumerable<Mark> GetAll(Predicate<Mark> filterPredicate = null)
         {

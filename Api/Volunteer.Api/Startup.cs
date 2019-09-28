@@ -68,7 +68,7 @@
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
 
-            ActivitiesData.InitializeTempData();
+            TempDataInitializer.Initialize();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
