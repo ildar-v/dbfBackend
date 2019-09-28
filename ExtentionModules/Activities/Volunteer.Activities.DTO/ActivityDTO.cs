@@ -7,6 +7,6 @@
     public class ActivityDTO
     {
         public Activity Activity { get; set; }
-        public IEnumerable<Comment> Comment { get; set; }
+        public IEnumerable<Comment> Comments { get; set; }
     }
 }

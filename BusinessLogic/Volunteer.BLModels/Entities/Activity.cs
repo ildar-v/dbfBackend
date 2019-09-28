@@ -12,5 +12,6 @@
         public IReport Report { get; set; }
         public IRating Rating { get; set; }
         public DateTime AddDateTime { get; set; }
+        public string ImageUrl { get; set; }
     }
 }
