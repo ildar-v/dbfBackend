@@ -19,7 +19,7 @@
         {
             if (filter == null)
             {
-                this.dataManager.GetAll();
+                return this.dataManager.GetAll();
             }
 
             return dataManager.GetAll(a => filter.Check<Comment>(a));

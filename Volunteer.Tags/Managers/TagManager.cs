@@ -19,7 +19,7 @@ namespace Volunteer.Tags.Managers
         {
             if (filter == null)
             {
-                this.dataManager.GetAll();
+                return this.dataManager.GetAll();
             }
 
             return dataManager.GetAll(a => filter.Check<Tag>(a));

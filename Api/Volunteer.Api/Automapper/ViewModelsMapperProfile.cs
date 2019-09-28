@@ -43,8 +43,7 @@
                 .ForMember(lvm => lvm.Mark, opt => opt.MapFrom(vm => vm.Mark))
                 .ForMember(avm => avm.Organizers, opt => opt.MapFrom(dto => dto.Organizers))
                 .ForMember(avm => avm.Volunteers, opt => opt.MapFrom(dto => dto.Volunteers))
-                .ForMember(avm => avm.Tags, opt => opt.Ignore());
-                //.ForMember(avm => avm.Tags, opt => opt.MapFrom(dto => dto.Tags));
+                .ForMember(avm => avm.Tags, opt => opt.MapFrom(dto => dto.Tags));
 
             CreateMap<ActivityDTO, ActivityViewModel>()
                 .ForMember(lvm => lvm.Uid, opt => opt.MapFrom(vm => vm.Activity.Uid))
@@ -53,8 +52,7 @@
                 .ForMember(lvm => lvm.Location, opt => opt.MapFrom(vm => vm.Activity.Location.ToString()))
                 .ForMember(lvm => lvm.AddDateTime, opt => opt.MapFrom(vm => vm.Activity.AddDateTime))
                 .ForMember(lvm => lvm.Mark, opt => opt.MapFrom(vm => vm.Mark))
-                .ForMember(avm => avm.Tags, opt => opt.Ignore());
-                //.ForMember(avm => avm.Tags, opt => opt.MapFrom(dto => dto.Tags));
+                .ForMember(avm => avm.Tags, opt => opt.MapFrom(dto => dto.Tags));
 
             CreateMap<Comment, CommentViewModel>()
                 .ForMember(lvm => lvm.Uid, opt => opt.MapFrom(vm => vm.Uid))
