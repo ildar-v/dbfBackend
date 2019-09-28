@@ -8,12 +8,17 @@
     using Activities.DTO;
     using Comments.Entity;
     using Api.ViewModels.Comment;
+    using BLModels.Interfaces;
 
     public class ViewModelsMapperProfile : Profile
     {
         public ViewModelsMapperProfile()
         {
             CreateMap<RatingDTO, RatingViewModel>()
+            .ForMember(lvm => lvm.Uid, opt => opt.MapFrom(vm => vm.Uid))
+            .ForMember(lvm => lvm.Value, opt => opt.MapFrom(vm => vm.Value));
+
+            CreateMap<IRating, RatingViewModel>()
             .ForMember(lvm => lvm.Uid, opt => opt.MapFrom(vm => vm.Uid))
             .ForMember(lvm => lvm.Value, opt => opt.MapFrom(vm => vm.Value));
 
@@ -28,7 +33,7 @@
             .ForMember(lvm => lvm.Uid, opt => opt.MapFrom(vm => vm.Activity.Uid))
             .ForMember(lvm => lvm.Title, opt => opt.MapFrom(vm => vm.Activity.Title))
             .ForMember(lvm => lvm.Description, opt => opt.MapFrom(vm => vm.Activity.Description))
-           // .ForMember(lvm => lvm.Location, opt => opt.MapFrom(vm => vm.Activity.Location.ToString()))
+            .ForMember(lvm => lvm.Location, opt => opt.MapFrom(vm => vm.Activity.Location.ToString()))
             .ForMember(lvm => lvm.Rating, opt => opt.MapFrom(vm => vm.Activity.Rating))
             .ForMember(lvm => lvm.AddDateTime, opt => opt.MapFrom(vm => vm.Activity.AddDateTime))
             .ForMember(lvm => lvm.CommentCount, opt => opt.MapFrom(vm => vm.Comments.Count()));
