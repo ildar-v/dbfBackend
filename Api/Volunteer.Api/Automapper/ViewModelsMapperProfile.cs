@@ -9,7 +9,8 @@
     using Comments.Entity;
     using Api.ViewModels.Comment;
     using BLModels.Interfaces;
-    using Volunteer.Api.Models;
+    using Api.Models;
+    using Authentity.Model;
 
     public class ViewModelsMapperProfile : Profile
     {
@@ -56,6 +57,13 @@
             .ForMember(lvm => lvm.Description, opt => opt.MapFrom(vm => vm.Description))
             .ForMember(lvm => lvm.ImageUrl, opt => opt.MapFrom(vm => vm.ImageUrl))
             .ForMember(lvm => lvm.AuthorUids, opt => opt.MapFrom(vm => vm.AuthorUids));
+
+            CreateMap<RegisterModel, UserDTO>()
+           .ForMember(lvm => lvm.FullName, opt => opt.MapFrom(vm => vm.FullName))
+           .ForMember(lvm => lvm.Login, opt => opt.MapFrom(vm => vm.Login))
+           .ForMember(lvm => lvm.PasswordHash, opt => opt.MapFrom(vm => vm.Password))
+           .ForMember(lvm => lvm.AvatarUrl, opt => opt.MapFrom(vm => vm.AvatarUrl))
+            .ForMember(lvm => lvm.About, opt => opt.MapFrom(vm => vm.About));
         }
     }
 }

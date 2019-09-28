@@ -35,7 +35,21 @@
             }
 
             JwtSecurityToken token = this.GetJwtToken(tokenArgs);
+            var encodedToken = new JwtSecurityTokenHandler().WriteToken(token);
+            return Ok(new { uid = tokenArgs.UserUid, access_token = encodedToken });
+        }
 
+        [AllowAnonymous, HttpPost("/registration")]
+        public IActionResult Registration([FromBody] RegisterModel model)
+        {
+            var tokenArgs = this.authentification.Registration(model);
+
+            if (tokenArgs == null)
+            {
+                return StatusCode(500, "Произошла ошибка при регистрации");
+            }
+
+            JwtSecurityToken token = this.GetJwtToken(tokenArgs);
             var encodedToken = new JwtSecurityTokenHandler().WriteToken(token);
             return Ok(new { uid = tokenArgs.UserUid, access_token = encodedToken });
         }

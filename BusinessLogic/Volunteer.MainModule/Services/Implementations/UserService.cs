@@ -24,6 +24,7 @@
         public bool CreateOrUpdate(UserDTO entity)
         {
             var user = mapper.Map<User>(entity);
+            user.Uid = Guid.NewGuid();
             return this.userManager.Save(user);
         }
 
