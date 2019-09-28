@@ -25,11 +25,6 @@
                 AddDateTime = DateTime.Now,
                 AuthorUid = Guid.Empty,
                 Parent = null,
-                Rating = new Rating
-                {
-                    Uid = Guid.NewGuid(),
-                    Value = 0.5
-                },
                 EntityType = typeof(Activity),
                 EntityUid = ActivityUid2
             },
@@ -40,11 +35,6 @@
                 AddDateTime = DateTime.Now,
                 AuthorUid = Guid.Empty,
                 Parent = null,
-                Rating = new Rating
-                {
-                    Uid = Guid.NewGuid(),
-                    Value = 0.75
-                },
                 EntityType = typeof(Activity),
                 EntityUid = ActivityUid2
             }
@@ -56,11 +46,6 @@
                 AddDateTime = DateTime.Now,
                 AuthorUid = Guid.Empty,
                 Parent = null,
-                Rating = new Rating
-                {
-                    Uid = Guid.NewGuid(),
-                    Value = 0.75
-                },
                 EntityType = typeof(Activity),
                 EntityUid = ActivityUid3
             };
@@ -71,11 +56,6 @@
                 AddDateTime = DateTime.Now,
                 AuthorUid = Guid.Empty,
                 Parent = comment3,
-                Rating = new Rating
-                {
-                    Uid = Guid.NewGuid(),
-                    Value = 0.75
-                },
                 EntityType = typeof(Activity),
                 EntityUid = ActivityUid3
             };
@@ -90,11 +70,6 @@
             {
                 Uid = ActivityUid1,
                 Description = "Какое-то описание",
-                Rating = new Rating
-                {
-                    Uid = Guid.NewGuid(),
-                    Value = 123,
-                },
                 Title = "Какое-то название",
                 AddDateTime = DateTime.Now
             },
@@ -102,11 +77,6 @@
             {
                 Uid = ActivityUid2,
                 Description = "Какое-то описание-1",
-                Rating = new Rating
-                {
-                    Uid = Guid.NewGuid(),
-                    Value = 99,
-                },
                 Title = "Какое-то название-1",
                 AddDateTime = DateTime.Now
             },
@@ -114,11 +84,6 @@
             {
                 Uid = ActivityUid3,
                 Description = "Какое-то описание-2",
-                Rating = new Rating
-                {
-                    Uid = Guid.NewGuid(),
-                    Value = 93,
-                },
                 Title = "Какое-то название-2",
                 AddDateTime = DateTime.Now
             }

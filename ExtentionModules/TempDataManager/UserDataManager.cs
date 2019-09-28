@@ -26,11 +26,6 @@ namespace TempDAL
                         Uid = Guid.NewGuid()
                     }
                 },
-                Rating = new Rating
-                {
-                    Uid = Guid.NewGuid(),
-                    Value = 10
-                },
                 About = "Это Карабаев Максим Олегович - программист RDDS",
                 AvatarUrl = "https://avatars.mds.yandex.net/get-pdb/28866/bc1b684a-8405-4c23-b76a-25648d529c52/s1200"
             });
@@ -46,11 +41,6 @@ namespace TempDAL
                     {
                         Uid = Guid.NewGuid()
                     }
-                },
-                Rating = new Rating
-                {
-                    Uid = Guid.NewGuid(),
-                    Value = 10
                 },
                 About = "Это Ильдар - воображаемый друг",
                 AvatarUrl = "https://avatars.mds.yandex.net/get-pdb/480866/719d9723-eac6-40c8-aab3-3c71a0b25a1e/s1200"
