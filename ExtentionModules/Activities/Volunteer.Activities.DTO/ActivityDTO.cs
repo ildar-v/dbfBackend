@@ -8,5 +8,6 @@
     {
         public Activity Activity { get; set; }
         public IEnumerable<Comment> Comments { get; set; }
+        public int Mark { get; set; }
     }
 }

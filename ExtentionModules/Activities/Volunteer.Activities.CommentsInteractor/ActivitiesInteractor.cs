@@ -13,11 +13,14 @@
     {
         private readonly ISimpleManager<Comment> commentSimpleManager;
         private readonly ISimpleManager<Activity> activitySimpleManager;
+        private readonly ISimpleManager<Mark> activityMarkManager;
 
-        public ActivitiesInteractor(ISimpleManager<Comment> commentSimpleManager, ISimpleManager<Activity> activitySimpleManager)
+        public ActivitiesInteractor(ISimpleManager<Comment> commentSimpleManager,
+            ISimpleManager<Activity> activitySimpleManager, ISimpleManager<Mark> activityMarkManager)
         {
             this.commentSimpleManager = commentSimpleManager;
             this.activitySimpleManager = activitySimpleManager;
+            this.activityMarkManager = activityMarkManager;
         }
 
         public IEnumerable<ActivityDTO> Find(Filter filter = null)
@@ -32,6 +35,16 @@
 
             foreach (var activity in activities)
             {
+                var activityMark = 0;
+                var marks = this.activityMarkManager.Find(new Filter(new Dictionary<string, object[]>
+                    {
+                        { "EntityUid", new object[] { activity.Uid } },
+                    }));
+                foreach (var mark in marks)
+                {
+                    activityMark += mark.Flag ? 1 : -1;
+                }
+
                 result.Add(new ActivityDTO
                 {
                     Activity = activity,
@@ -39,7 +52,8 @@
                     {
                         { "EntityUid", new object[] { activity.Uid } },
                         { "EntityType", new object[] { typeof(Activity) } }
-                    }))
+                    })),
+                    Mark = activityMark
                 });
             }
 

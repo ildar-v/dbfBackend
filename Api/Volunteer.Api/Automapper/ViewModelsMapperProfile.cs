@@ -31,7 +31,8 @@
             .ForMember(lvm => lvm.Description, opt => opt.MapFrom(vm => vm.Activity.Description))
             .ForMember(lvm => lvm.Location, opt => opt.MapFrom(vm => vm.Activity.Location.ToString()))
             .ForMember(lvm => lvm.AddDateTime, opt => opt.MapFrom(vm => vm.Activity.AddDateTime))
-            .ForMember(lvm => lvm.CommentCount, opt => opt.MapFrom(vm => vm.Comments.Count()));
+            .ForMember(lvm => lvm.CommentCount, opt => opt.MapFrom(vm => vm.Comments.Count()))
+            .ForMember(lvm => lvm.Mark, opt => opt.MapFrom(vm => vm.Mark));
 
             CreateMap<ActivityDTO, ActivityDetailViewModel>()
             .ForMember(lvm => lvm.Uid, opt => opt.MapFrom(vm => vm.Activity.Uid))

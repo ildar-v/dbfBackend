@@ -21,9 +21,9 @@
         }
 
         [HttpGet("api/activities")]
-        public ActionResult<IEnumerable<ActivityDTO>> Get()
+        public ActionResult<IEnumerable<ActivityViewModel>> Get()
         {
-            IEnumerable<ActivityDTO> data = this.activitiesInteractor.Find();
+            var data = this.activitiesInteractor.Find();
 
             if (data != null)
             {

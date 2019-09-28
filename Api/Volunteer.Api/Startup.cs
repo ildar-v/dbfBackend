@@ -46,13 +46,15 @@
             services.AddTransient<ISimpleManager<Activity>, ActivityManager>();
             services.AddTransient<IDataManager<Comment>, CommentDataManager>();
             services.AddTransient<ISimpleManager<Comment>, CommentsManager>();
+            services.AddTransient<IDataManager<Mark>, MarkDataManager>();
+            services.AddTransient<ISimpleManager<Mark>, MarkManager>();
             services.AddTransient<ActivitiesInteractor>();
             services.AddTransient<ISimpleManager<User>, UserManager>();
             services.AddTransient<IDataManager<User>, UserDataManager>();
             services.AddTransient<IUserService, UserService>();
-           
 
-            List<Profile> automapperProfiles = new List<Profile>();
+
+            var automapperProfiles = new List<Profile>();
             automapperProfiles.Add(AutomapperConfig.GetAutomapperProfile());
             automapperProfiles.Add(new ViewModelsMapperProfile());
             var mappingConfig = new MapperConfiguration(mc =>
@@ -65,7 +67,7 @@
                 mc.AllowNullDestinationValues = true;
                 mc.EnableNullPropagationForQueryMapping = true;
             });
-            IMapper mapper = mappingConfig.CreateMapper();
+            var mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
 
             TempDataInitializer.Initialize();
