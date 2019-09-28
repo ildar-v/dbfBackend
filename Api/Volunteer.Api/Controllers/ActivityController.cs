@@ -34,16 +34,15 @@
             return new NotFoundResult();
         }
 
-
         [HttpGet("api/activity/{id}")]
-        public ActionResult<IEnumerable<ActivityDTO>> Get(Guid id)
+        public ActionResult<ActivityDetailViewModel> Get(Guid id)
         {
             var dto = this.activitiesInteractor.FindScalarByUid(id);
 
             if (dto != null)
             {
-                //var result = mapper.Map<ActivityDetailViewModel>(dto);
-                return Ok(dto);
+                var result = mapper.Map<ActivityDetailViewModel>(dto);
+                return Ok(result);
             }
 
             return new NotFoundResult();
