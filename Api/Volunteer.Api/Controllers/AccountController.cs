@@ -40,8 +40,6 @@
             return Ok(new { uid = tokenArgs.UserUid, access_token = encodedToken });
         }
 
-
-
         private JwtSecurityToken GetJwtToken(JwtTokenArgs args)
         {
             return new JwtSecurityToken(
