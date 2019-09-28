@@ -23,7 +23,7 @@
         [HttpGet("api/activities")]
         public ActionResult<IEnumerable<ActivityDTO>> Get()
         {
-            var data = this.activitiesInteractor.Find();
+            IEnumerable<ActivityDTO> data = this.activitiesInteractor.Find();
 
             if(data != null)
             {
@@ -42,8 +42,8 @@
 
             if (dto != null)
             {
-                var result = mapper.Map<ActivityDetailViewModel>(dto);
-                return Ok(result);
+                //var result = mapper.Map<ActivityDetailViewModel>(dto);
+                return Ok(dto);
             }
 
             return new NotFoundResult();
