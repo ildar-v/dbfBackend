@@ -4,9 +4,9 @@ using Volunteer.Tags.Models;
 
 namespace Volunteer.DirtyData
 {
-    public class TagsData
+    public static class TagsData
     {
-        public TagsData()
+        static TagsData()
         {
             TagsDataManager.tempStore = new List<Tag>
             {
@@ -37,6 +37,12 @@ namespace Volunteer.DirtyData
                     }
                 }
             };
+
+        }
+
+        public static void InitializeTempData()
+        {
+
         }
     }
 }

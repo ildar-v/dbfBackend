@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\dobrfDownloader\DobrfDownloadModule\DobrfDownloadModule.csproj" />
     <ProjectReference Include="..\..\ExtentionModules\TempDataManager\TempDAL.csproj" />
     <ProjectReference Include="..\..\ExtentionModules\Volunteer.Comments\Volunteer.Comments.csproj" />
     <ProjectReference Include="..\..\Volunteer.Tags\Volunteer.Tags.csproj" />
