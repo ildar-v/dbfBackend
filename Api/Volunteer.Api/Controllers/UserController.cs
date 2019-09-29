@@ -6,17 +6,22 @@
     using MainModule.Services.Interfaces;
     using Microsoft.AspNetCore.Authorization;
     using AutoMapper;
+    using Volunteer.BLModels.Entities;
+    using System;
+    using Volunteer.MainModule.Managers;
 
     [ApiController]
     public class UserController : ControllerBase
     {
         private readonly IUserService userService;
         private readonly IMapper mapper;
+        private readonly ISimpleManager<ActivitiesUsers> activitiesUsersService;
 
-        public UserController(IUserService userService, IMapper mapper)
+        public UserController(IUserService userService, IMapper mapper, ISimpleManager<ActivitiesUsers> activitiesUsersService)
         {
             this.userService = userService;
             this.mapper = mapper;
+            this.activitiesUsersService = activitiesUsersService;
         }
 
         [HttpGet("api/users")]
@@ -31,6 +36,26 @@
             }
 
             return NotFound();
+        }
+
+        [HttpPost("api/user")]
+        public ActionResult Post(string activityUid, string userUid)
+        {
+            if (Guid.TryParse(activityUid, out var _activityUid) && Guid.TryParse(userUid, out var _userUid))
+            {
+                var entry = new ActivitiesUsers
+                {
+                    ActivityGuid = _activityUid,
+                    UserGuid = _userUid,
+                    Uid = Guid.NewGuid(),
+                    UserType = BLModels.Enums.UserTypes.Volunteer
+                };
+                if (activitiesUsersService.Save(entry))
+                {
+                    return Ok();
+                }
+            }
+            return BadRequest("Ошибка сохранения");
         }
 
         [HttpGet("api/user/{uidOrLogin}")]
