@@ -16,6 +16,7 @@
     using System.Collections.Generic;
     using Volunteer.Finances.Models;
     using Volunteer.Api.ViewModels.Finance;
+    using System;
 
     public class ViewModelsMapperProfile : Profile
     {
@@ -34,7 +35,7 @@
 
             CreateMap<Tag, TagViewModel>()
                 .ForMember(t1 => t1.Name, opt => opt.MapFrom(tvm => tvm.Name));
-            
+
             CreateMap<ActivityDetailDTO, ActivityDetailViewModel>()
                 .ForMember(lvm => lvm.Uid, opt => opt.MapFrom(vm => vm.Activity.Uid))
                 .ForMember(lvm => lvm.Title, opt => opt.MapFrom(vm => vm.Activity.Title))
@@ -128,6 +129,10 @@
                .ForMember(cdto => cdto.PasswordHash, opt => opt.MapFrom(com => com.Password))
                .ForMember(cdto => cdto.AvatarUrl, opt => opt.MapFrom(com => com.AvatarUrl))
                .ForMember(cdto => cdto.About, opt => opt.MapFrom(com => com.About));
+
+            CreateMap<TagModel, Tag>()
+               .ForMember(cdto => cdto.EntityUids.First() == Guid.Empty ? Guid.Empty : cdto.EntityUids.First(), opt => opt.MapFrom(com => com.EntityUid))
+               .ForMember(cdto => cdto.Name, opt => opt.MapFrom(com => com.Name));
         }
     }
 }

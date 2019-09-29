@@ -35,6 +35,14 @@ namespace Volunteer.DirtyData
                     {
                         ActivitiesData.ActivityUid3,
                     }
+                },
+                new Tag
+                {
+                    Name = "Сироты",
+                    EntityUids = new List<System.Guid>
+                    {
+                        ActivitiesData.ActivityUid3,
+                    }
                 }
             };
 

@@ -20,12 +20,20 @@ namespace TempDAL
             return tempStore.Where(i => filterPredicate.Invoke(i));
         }
 
-        public bool Save(Tag enitity)
+        public bool Save(Tag tagNewUpdate)
         {
-            var exists = tempStore.FirstOrDefault(i => i.Name == enitity.Name);
-            if (exists == null)
+            var tag = tempStore.FirstOrDefault(i => i.Name == tagNewUpdate.Name);
+            if (tag == null)
             {
-                tempStore.Add(enitity);
+                tempStore.Add(tag);
+                return true;
+            }
+
+            var entityUid = tag.EntityUids.FirstOrDefault();
+            var exists = tag.EntityUids.Any(x => x == entityUid);
+            if (!exists)
+            {
+                tag.EntityUids.Add(entityUid);
                 return true;
             }
             return false;
