@@ -45,7 +45,8 @@
                 .ForMember(lvm => lvm.Mark, opt => opt.MapFrom(vm => vm.Mark))
                 .ForMember(avm => avm.Organizers, opt => opt.MapFrom(dto => dto.Organizers))
                 .ForMember(avm => avm.Volunteers, opt => opt.MapFrom(dto => dto.Volunteers))
-                .ForMember(avm => avm.Tags, opt => opt.MapFrom(dto => dto.Tags));
+                .ForMember(avm => avm.Tags, opt => opt.MapFrom(dto => dto.Tags))
+                .ForMember(avm => avm.PictureUrl, opt => opt.MapFrom(dto => dto.Activity.ImageUrl));
 
             CreateMap<ActivityDTO, ActivityViewModel>()
                 .ForMember(lvm => lvm.Uid, opt => opt.MapFrom(vm => vm.Activity.Uid))
@@ -55,7 +56,8 @@
                 .ForMember(lvm => lvm.AddDateTime, opt => opt.MapFrom(vm => vm.Activity.AddDateTime))
                 .ForMember(lvm => lvm.Mark, opt => opt.MapFrom(vm => vm.Mark))
                 .ForMember(lvm => lvm.CommentsCount, opt => opt.MapFrom(vm => vm.CommentsCount))
-                .ForMember(avm => avm.Tags, opt => opt.MapFrom(dto => dto.Tags));
+                .ForMember(avm => avm.Tags, opt => opt.MapFrom(dto => dto.Tags))
+                .ForMember(avm => avm.PictureUrl, opt => opt.MapFrom(dto => dto.Activity.ImageUrl));
 
             CreateMap<Comment, CommentViewModel>()
                 .ForMember(lvm => lvm.Uid, opt => opt.MapFrom(vm => vm.Uid))

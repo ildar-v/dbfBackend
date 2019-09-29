@@ -17,5 +17,6 @@
         public string AuthorAvatar { get; set; }
         public Guid AuthorUid { get; set; }
         public string AuthorFullName { get; set; }
+        public string PictureUrl { get; set; }
     }
 }
