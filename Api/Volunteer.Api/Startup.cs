@@ -91,6 +91,7 @@
             services.AddTransient<ISimpleManager<Fund>, FundManager>();
             services.AddTransient<IDataManager<Fund>, FundDataManager>();
             services.AddTransient<FundsInteractor>();
+            services.AddTransient<IActivitiesUsersService, ActivitiesUsersService>();
 
             var automapperProfiles = new List<Profile>();
             automapperProfiles.Add(MainModule.Automapper.AutomapperConfig.GetAutomapperProfile());

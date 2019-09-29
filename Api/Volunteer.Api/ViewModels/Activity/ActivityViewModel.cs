@@ -14,5 +14,8 @@
         public IEnumerable<TagViewModel> Tags { get; set; }
         public int Mark { get; set; }
         public int CommentsCount { get; set; }
+        public string AuthorAvatar { get; set; }
+        public Guid AuthorUid { get; set; }
+        public string AuthorFullName { get; set; }
     }
 }

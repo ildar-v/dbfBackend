@@ -82,30 +82,30 @@
             CommentDataManager.tempStore = tempActivityCommentStore;
         }
 
-        //private static List<Activity> tempActivityStore = new List<Activity>()
-        //{
-        //    new Activity()
-        //    {
-        //        Uid = ActivityUid1,
-        //        Description = "Какое-то описание",
-        //        Title = "Какое-то название",
-        //        AddDateTime = DateTime.Now
-        //    },
-        //    new Activity()
-        //    {
-        //        Uid = ActivityUid2,
-        //        Description = "Какое-то описание-1",
-        //        Title = "Какое-то название-1",
-        //        AddDateTime = DateTime.Now
-        //    },
-        //    new Activity()
-        //    {
-        //        Uid = ActivityUid3,
-        //        Description = "Какое-то описание-2",
-        //        Title = "Какое-то название-2",
-        //        AddDateTime = DateTime.Now
-        //    }
-        //};
+        private static List<Activity> tempActivityStore = new List<Activity>()
+        {
+            new Activity()
+            {
+                Uid = ActivityUid1,
+                Description = "Какое-то описание",
+                Title = "Какое-то название",
+                AddDateTime = DateTime.Now
+            },
+            new Activity()
+            {
+                Uid = ActivityUid2,
+                Description = "Какое-то описание-1",
+                Title = "Какое-то название-1",
+                AddDateTime = DateTime.Now
+            },
+            new Activity()
+            {
+                Uid = ActivityUid3,
+                Description = "Какое-то описание-2",
+                Title = "Какое-то название-2",
+                AddDateTime = DateTime.Now
+            }
+        };
 
         public static void InitializeTempData()
         {
