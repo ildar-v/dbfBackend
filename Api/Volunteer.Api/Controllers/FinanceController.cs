@@ -5,21 +5,34 @@
     using AutoMapper;
     using Microsoft.AspNetCore.Mvc;
     using Volunteer.Api.Models;
+    using Volunteer.Api.ViewModels;
+    using Volunteer.Api.ViewModels.Comment;
     using Volunteer.Api.ViewModels.Finance;
+    using Volunteer.Comments.Entity;
     using Volunteer.Finances;
     using Volunteer.Finances.Models;
     using Volunteer.Finances.Services.FundsService;
+    using Volunteer.MainModule.Managers;
+    using Volunteer.MainModule.Managers.Filters;
+    using Volunteer.MainModule.Services.Interfaces;
 
     [ApiController]
     public class FinanceController : ControllerBase
     {
         private readonly FundsInteractor fundsInteractor;
         private readonly IMapper mapper;
+        private readonly ISimpleManager<Comment> commentSimpleManager;
+        private readonly IUserService userService;
+        private readonly IMarkService markService;
 
-        public FinanceController(FundsInteractor fundsInteractor, IMapper mapper)
+        public FinanceController(FundsInteractor fundsInteractor, IMapper mapper, ISimpleManager<Comment> commentSimpleManager,
+            IUserService userService, IMarkService markService)
         {
             this.fundsInteractor = fundsInteractor;
             this.mapper = mapper;
+            this.commentSimpleManager = commentSimpleManager;
+            this.userService = userService;
+            this.markService = markService;
         }
 
         [HttpGet("api/fund")]
@@ -100,6 +113,27 @@
             this.fundsInteractor.NewCashFlow(model.Amount, model.FundUid, model.ActivityUid);
 
             return Ok(new { success = "Движение средств успешно записано" });
+        }
+
+        [HttpPost("api/activity/comment")]
+        public ActionResult<IEnumerable<CommentViewModel>> Post([FromBody] CommentModel commentModel)
+        {
+            var comment = mapper.Map<Comment>(commentModel);
+            comment.EntityType = typeof(Fund);
+            this.commentSimpleManager.Save(comment);
+            var comments = this.commentSimpleManager
+                .Find(
+                    new Filter(nameof(Comment.EntityUid),
+                    new object[] { commentModel.EntityUid }
+                ));
+            var commentVMs = mapper.Map<IEnumerable<CommentViewModel>>(comments);
+            foreach (var commentVM in commentVMs)
+            {
+                commentVM.Mark = this.markService.GetRaiting(commentModel.EntityUid);
+                var userDTO = this.userService.FindByUid(commentModel.AuthorUid);
+                commentVM.Author = mapper.Map<UserViewModel>(userDTO);
+            }
+            return Ok(commentVMs);
         }
     }
 }
