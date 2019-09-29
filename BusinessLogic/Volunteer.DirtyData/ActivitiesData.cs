@@ -20,17 +20,17 @@
             var events = dobrfDownloader.GetEvents();
             List<Activity> tempActivityStore = new List<Activity>();
 
-            foreach (var item in events.results)
+            foreach (var item in events)
             {
                 tempActivityStore.Add(new Activity
                 {
-                    Description = item.slug,
+                    Description = item.description,
                     ImageUrl = item.image?.original,
                     Title = item.name,
                     AddDateTime = DateTime.Now + new TimeSpan(new Random().Next(0, 20), 0, 0),
                     EndDateTime = item.end_date,
                     StartDateTime = item.start_date,
-                    Uid = Guid.NewGuid()
+                    Uid = Guid.NewGuid(),
                 });
             }
             tempActivityStore[0].Uid = ActivityUid1;
