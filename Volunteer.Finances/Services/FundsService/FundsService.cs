@@ -6,11 +6,11 @@ using Volunteer.MainModule.Managers.Filters;
 
 namespace Volunteer.Finances.Services.FundsService
 {
-    public class FundService : IFundsService
+    public class FundsService : IFundsService
     {
         private readonly ISimpleManager<Fund> fundManager;
 
-        public FundService(ISimpleManager<Fund> fundManager)
+        public FundsService(ISimpleManager<Fund> fundManager)
         {
             this.fundManager = fundManager;
         }

@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Volunteer.Finances.Models;
-using Volunteer.MainModule.Managers.DataManagers;
-
-namespace TempDAL.FinanceSystemDAL
+﻿namespace TempDAL.FinanceSystemDAL
 {
-    public class FundDataManager : IDataManager<Fund>
-    {
-        public static List<Fund> tempStore = new List<Fund>();
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using Volunteer.Finances.Models;
+    using Volunteer.MainModule.Managers.DataManagers;
 
-        public IEnumerable<Fund> GetAll(Predicate<Fund> filterPredicate = null)
+    public class CashFlowDataManager : IDataManager<CashFlow>
+    {
+        public static List<CashFlow> tempStore = new List<CashFlow>();
+
+        public IEnumerable<CashFlow> GetAll(Predicate<CashFlow> filterPredicate = null)
         {
             if (filterPredicate == null)
             {
@@ -20,7 +20,7 @@ namespace TempDAL.FinanceSystemDAL
             return tempStore.Where(i => filterPredicate.Invoke(i));
         }
 
-        public bool Save(Fund enitity)
+        public bool Save(CashFlow enitity)
         {
             var exists = tempStore.FirstOrDefault(i => i.Uid == enitity.Uid);
             if (exists == null)

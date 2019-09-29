@@ -12,6 +12,8 @@
     using Api.Models;
     using Authentity.Model;
     using Volunteer.Comments;
+    using Volunteer.Finances.Models;
+    using Volunteer.Api.ViewModels.Finance;
 
     public class ViewModelsMapperProfile : Profile
     {
@@ -78,6 +80,27 @@
                 .ForMember(cdto => cdto.EntityUid, opt => opt.MapFrom(com => com.EntityUid))
                 .ForMember(cdto => cdto.AddDateTime, opt => opt.MapFrom(com => com.AddDateTime))
                 .ForMember(cdto => cdto.Mark, opt => opt.MapFrom(com => com.Mark));
+
+            CreateMap<Fund, FundViewModel>()
+                .ForMember(cdto => cdto.Title, opt => opt.MapFrom(com => com.Title))
+                .ForMember(cdto => cdto.Description, opt => opt.MapFrom(com => com.Description))
+                .ForMember(cdto => cdto.Budget, opt => opt.MapFrom(com => com.Budget))
+                .ForMember(cdto => cdto.StartDate, opt => opt.MapFrom(com => com.StartDate))
+                .ForMember(cdto => cdto.EndDate, opt => opt.MapFrom(com => com.EndDate));
+
+            CreateMap<CashFlow, CashFlowViewModel>()
+               .ForMember(cdto => cdto.Amount, opt => opt.MapFrom(com => com.Amount))
+               .ForMember(cdto => cdto.DateTime, opt => opt.MapFrom(com => com.DateTime))
+               .ForMember(cdto => cdto.ActivityTitle, opt => opt.MapFrom(com => com.Activity.Title))
+               .ForMember(cdto => cdto.FundTitle, opt => opt.MapFrom(com => com.Fund.Title));
+
+            CreateMap<Fund, FundDetailViewModel>()
+               .ForMember(cdto => cdto.Title, opt => opt.MapFrom(com => com.Title))
+               .ForMember(cdto => cdto.Description, opt => opt.MapFrom(com => com.Description))
+               .ForMember(cdto => cdto.Budget, opt => opt.MapFrom(com => com.Budget))
+               .ForMember(cdto => cdto.StartDate, opt => opt.MapFrom(com => com.StartDate))
+               .ForMember(cdto => cdto.EndDate, opt => opt.MapFrom(com => com.EndDate))
+               .ForMember(cdto => cdto.CashFlows, opt => opt.MapFrom(com => com.CashFlows));
         }
     }
 }
