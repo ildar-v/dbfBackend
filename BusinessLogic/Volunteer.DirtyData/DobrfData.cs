@@ -32,7 +32,7 @@
 
             tempUserStore[0].Uid = UserUid1;
             tempUserStore[1].Uid = UserUid2;
-            UserDataManager.tempStore = tempUserStore;
+            UserDataManager.tempStore.AddRange(tempUserStore);
         }
 
         public static void InitializeTempData()

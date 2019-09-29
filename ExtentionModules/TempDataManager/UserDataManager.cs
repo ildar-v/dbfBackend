@@ -8,7 +8,7 @@ namespace TempDAL
 {
     public class UserDataManager : IDataManager<User>
     {
-        public static List<User> tempStore = new List<User>();
+        public static List<User> tempStore { get; private set; } = new List<User>();
 
         public IEnumerable<User> GetAll(Predicate<User> filterPredicate = null)
         {

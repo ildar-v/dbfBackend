@@ -31,7 +31,7 @@
                 About = "Это Ильдар - воображаемый друг",
                 AvatarUrl = "https://avatars.mds.yandex.net/get-pdb/480866/719d9723-eac6-40c8-aab3-3c71a0b25a1e/s1200"
             });
-            UserDataManager.tempStore = tempUserStore;
+            UserDataManager.tempStore.AddRange(tempUserStore);
         }
 
         public static void InitializeTempData()
