@@ -102,6 +102,7 @@
                 .ForMember(cdto => cdto.Marks, opt => opt.Ignore());
 
             CreateMap<Fund, FundViewModel>()
+                .ForMember(cdto => cdto.Uid, opt => opt.MapFrom(com => com.Uid))
                 .ForMember(cdto => cdto.Title, opt => opt.MapFrom(com => com.Title))
                 .ForMember(cdto => cdto.Description, opt => opt.MapFrom(com => com.Description))
                 .ForMember(cdto => cdto.Budget, opt => opt.MapFrom(com => com.CashFlows.Sum(cf => cf.Amount)))
@@ -109,12 +110,14 @@
                 .ForMember(cdto => cdto.EndDate, opt => opt.MapFrom(com => com.EndDate));
 
             CreateMap<CashFlow, CashFlowViewModel>()
+                 .ForMember(cdto => cdto.Uid, opt => opt.MapFrom(com => com.Uid))
                .ForMember(cdto => cdto.Amount, opt => opt.MapFrom(com => com.Amount))
                .ForMember(cdto => cdto.DateTime, opt => opt.MapFrom(com => com.DateTime))
                .ForMember(cdto => cdto.ActivityTitle, opt => opt.MapFrom(com => com.Activity.Title))
                .ForMember(cdto => cdto.FundTitle, opt => opt.MapFrom(com => com.Fund.Title));
 
             CreateMap<Fund, FundDetailViewModel>()
+                .ForMember(cdto => cdto.Uid, opt => opt.MapFrom(com => com.Uid))
                .ForMember(cdto => cdto.Title, opt => opt.MapFrom(com => com.Title))
                .ForMember(cdto => cdto.Description, opt => opt.MapFrom(com => com.Description))
                .ForMember(cdto => cdto.Budget, opt => opt.MapFrom(com => com.CashFlows.Sum(cf => cf.Amount)))
