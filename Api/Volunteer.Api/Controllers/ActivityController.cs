@@ -15,6 +15,7 @@
     using Volunteer.Api.ViewModels.Comment;
     using Volunteer.MainModule.Managers.Filters;
     using Volunteer.Api.ViewModels;
+    using Volunteer.BLModels.Entities;
 
     [ApiController]
     public class ActivityController : ControllerBase
@@ -104,6 +105,7 @@
         public ActionResult<IEnumerable<CommentViewModel>> Post([FromBody] CommentModel commentModel)
         {
             var comment = mapper.Map<Comment>(commentModel);
+            comment.EntityType = typeof(Activity);
             this.commentSimpleManager.Save(comment);
             var comments = this.commentSimpleManager
                 .Find(
