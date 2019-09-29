@@ -14,6 +14,8 @@
     using Volunteer.Comments;
     using Volunteer.Tags.Models;
     using System.Collections.Generic;
+    using Volunteer.Finances.Models;
+    using Volunteer.Api.ViewModels.Finance;
 
     public class ViewModelsMapperProfile : Profile
     {
@@ -97,6 +99,27 @@
                 .ForMember(cdto => cdto.EntityType, opt => opt.Ignore())
                 .ForMember(cdto => cdto.AddDateTime, opt => opt.Ignore())
                 .ForMember(cdto => cdto.Marks, opt => opt.Ignore());
+
+            CreateMap<Fund, FundViewModel>()
+                .ForMember(cdto => cdto.Title, opt => opt.MapFrom(com => com.Title))
+                .ForMember(cdto => cdto.Description, opt => opt.MapFrom(com => com.Description))
+                .ForMember(cdto => cdto.Budget, opt => opt.MapFrom(com => com.Budget))
+                .ForMember(cdto => cdto.StartDate, opt => opt.MapFrom(com => com.StartDate))
+                .ForMember(cdto => cdto.EndDate, opt => opt.MapFrom(com => com.EndDate));
+
+            CreateMap<CashFlow, CashFlowViewModel>()
+               .ForMember(cdto => cdto.Amount, opt => opt.MapFrom(com => com.Amount))
+               .ForMember(cdto => cdto.DateTime, opt => opt.MapFrom(com => com.DateTime))
+               .ForMember(cdto => cdto.ActivityTitle, opt => opt.MapFrom(com => com.Activity.Title))
+               .ForMember(cdto => cdto.FundTitle, opt => opt.MapFrom(com => com.Fund.Title));
+
+            CreateMap<Fund, FundDetailViewModel>()
+               .ForMember(cdto => cdto.Title, opt => opt.MapFrom(com => com.Title))
+               .ForMember(cdto => cdto.Description, opt => opt.MapFrom(com => com.Description))
+               .ForMember(cdto => cdto.Budget, opt => opt.MapFrom(com => com.Budget))
+               .ForMember(cdto => cdto.StartDate, opt => opt.MapFrom(com => com.StartDate))
+               .ForMember(cdto => cdto.EndDate, opt => opt.MapFrom(com => com.EndDate))
+               .ForMember(cdto => cdto.CashFlows, opt => opt.MapFrom(com => com.CashFlows));
         }
     }
 }

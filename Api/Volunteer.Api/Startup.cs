@@ -18,7 +18,6 @@
     using MainModule.Managers.Implementations;
     using MainModule.Services.Interfaces;
     using MainModule.Services.Implementations;
-    using Volunteer.MainModule.Automapper;
     using AutoMapper;
     using System.Collections.Generic;
     using Api.Automapper;
@@ -27,6 +26,12 @@
     using System.Text;
     using Volunteer.Authentity;
     using Volunteer.Tags.Managers;
+    using Finances.Services.CashFlowService;
+    using Finances.Managers;
+    using Finances.Models;
+    using TempDAL.FinanceSystemDAL;
+    using Volunteer.Finances.Services.FundsService;
+    using Volunteer.Finances;
 
     public class Startup
     {
@@ -37,7 +42,6 @@
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSwaggerGen(c =>
@@ -80,11 +84,17 @@
 
             services.AddTransient<ActivitiesInteractor>();
             services.AddTransient<Authentification>();
+            services.AddTransient<ICashFlowService, CashFlowService>();
+            services.AddTransient<ISimpleManager<CashFlow>, CashFlowManager>();
+            services.AddTransient<IDataManager<CashFlow>, CashFlowDataManager>();
+            services.AddTransient<IFundsService, FundsService>(); 
+            services.AddTransient<ISimpleManager<Fund>, FundManager>();
+            services.AddTransient<IDataManager<Fund>, FundDataManager>();
+            services.AddTransient<FundsInteractor>();
 
             var automapperProfiles = new List<Profile>();
             automapperProfiles.Add(MainModule.Automapper.AutomapperConfig.GetAutomapperProfile());
             automapperProfiles.Add(Activities.Interactor.AutomapperConfig.GetAutomapperProfile());
-
             automapperProfiles.Add(new ViewModelsMapperProfile());
             var mappingConfig = new MapperConfiguration(mc =>
             {

@@ -10,6 +10,8 @@
             ActivitiesUsersData.InitializeTempData();
             TagsData.InitializeTempData();
             DobrfData.InitializeTempData();
+            FundData.InitializeTempData();
+            CashFlowData.InitializeTempData();
         }
     }
 }
