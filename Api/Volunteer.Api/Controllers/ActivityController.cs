@@ -40,7 +40,7 @@
             this.activitiesUsersService = activitiesUsersService;
         }
 
-        [HttpGet("api/activity")]
+        [HttpGet("api/activities")]
         public IActionResult GetAll()
         {
             var data = this.activitiesInteractor.Find();
