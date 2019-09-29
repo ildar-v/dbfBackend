@@ -8,7 +8,7 @@ namespace TempDAL
 {
     public class TagsDataManager : IDataManager<Tag>
     {
-        public static List<Tag> tempStore = new List<Tag>();
+        public static List<Tag> tempStore { get; set; }
 
         public IEnumerable<Tag> GetAll(Predicate<Tag> filterPredicate = null)
         {
@@ -20,12 +20,20 @@ namespace TempDAL
             return tempStore.Where(i => filterPredicate.Invoke(i));
         }
 
-        public bool Save(Tag enitity)
+        public bool Save(Tag tagNewUpdate)
         {
-            var exists = tempStore.FirstOrDefault(i => i.Name == enitity.Name);
-            if (exists == null)
+            var tag = tempStore.FirstOrDefault(i => i.Name == tagNewUpdate.Name);
+            if (tag == null)
             {
-                tempStore.Add(enitity);
+                tempStore.Add(tagNewUpdate);
+                return true;
+            }
+
+            var entityUid = tag.EntityUids.FirstOrDefault();
+            var exists = tag.EntityUids.Any(x => x == entityUid);
+            if (!exists)
+            {
+                tag.EntityUids.Add(entityUid);
                 return true;
             }
             return false;
