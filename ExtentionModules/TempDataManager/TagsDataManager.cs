@@ -8,7 +8,7 @@ namespace TempDAL
 {
     public class TagsDataManager : IDataManager<Tag>
     {
-        public static List<Tag> tempStore = new List<Tag>();
+        public static List<Tag> tempStore { get; set; }
 
         public IEnumerable<Tag> GetAll(Predicate<Tag> filterPredicate = null)
         {
@@ -25,7 +25,7 @@ namespace TempDAL
             var tag = tempStore.FirstOrDefault(i => i.Name == tagNewUpdate.Name);
             if (tag == null)
             {
-                tempStore.Add(tag);
+                tempStore.Add(tagNewUpdate);
                 return true;
             }
 

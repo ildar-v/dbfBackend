@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using TempDAL;
 using Volunteer.Api.ViewModels;
 using Volunteer.MainModule.Managers;
 using Volunteer.MainModule.Managers.Filters;
@@ -23,14 +24,34 @@ namespace Volunteer.Api.Controllers
             this.tagSimpleManager = tagSimpleManager;
         }
 
-        [HttpPost]
-        public IActionResult Post(TagModel tagModel)
+        [HttpGet("api/tag")]
+        public ActionResult<IEnumerable<TagViewModel>> Get()
         {
-            var tag = mapper.Map<Tag>(tagModel);
-            tagSimpleManager.Save(tag);
-            var tags = tagSimpleManager.Find(new Filter(nameof(Tag.Name), new object[] { tagModel.Name }));
-            var tagVMs = mapper.Map<TagViewModel>(tags);
+            var tags = tagSimpleManager.Find();
+            var tagVMs = mapper.Map<IEnumerable<TagViewModel>>(tags);
             return Ok(tagVMs);
+        }
+
+        [HttpPost("api/tag")]
+        public ActionResult<IEnumerable<TagViewModel>> Post(TagModel tagModel)
+        {
+            var tag = new Tag
+            {
+                Name = tagModel.Name,
+                EntityUids = new List<Guid> { tagModel.EntityUid }
+            };
+            tagSimpleManager.Save(tag);
+            var tags = tagSimpleManager.Find().Where(x => x.EntityUids.Contains(tagModel.EntityUid));
+            var tagVMs = mapper.Map<IEnumerable<TagViewModel>>(tags);
+            return Ok(tagVMs);
+        }
+
+        [HttpDelete("api/tag")]
+        public ActionResult Delete(TagModel tagModel)
+        {
+            var tag = TagsDataManager.tempStore.Single(x => x.Name == tagModel.Name);
+            tag.EntityUids.Remove(tagModel.EntityUid);
+            return Ok();
         }
     }
 }

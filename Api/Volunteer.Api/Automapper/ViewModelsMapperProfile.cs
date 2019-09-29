@@ -129,10 +129,6 @@
                .ForMember(cdto => cdto.PasswordHash, opt => opt.MapFrom(com => com.Password))
                .ForMember(cdto => cdto.AvatarUrl, opt => opt.MapFrom(com => com.AvatarUrl))
                .ForMember(cdto => cdto.About, opt => opt.MapFrom(com => com.About));
-
-            CreateMap<TagModel, Tag>()
-               .ForMember(cdto => cdto.EntityUids.First() == Guid.Empty ? Guid.Empty : cdto.EntityUids.First(), opt => opt.MapFrom(com => com.EntityUid))
-               .ForMember(cdto => cdto.Name, opt => opt.MapFrom(com => com.Name));
         }
     }
 }
