@@ -18,6 +18,8 @@
     using Volunteer.Api.ViewModels;
     using Volunteer.BLModels.Entities;
     using Volunteer.DTO;
+    using Volunteer.DirtyData;
+    using TempDAL;
 
     [ApiController]
     public class ActivityController : ControllerBase
@@ -89,33 +91,33 @@
         public ActionResult<ActivityDetailViewModel> Post([FromBody]ActivityCreateModel activityModel)
         {
             var newActivity = mapper.Map<ActivityCreateDTO>(activityModel);
-            string login = string.Empty;
+            //string login = string.Empty;
 
-            foreach (var item in User.Claims)
-            {
-                if (item.Type == "Login")
-                {
-                    login = item.Value;
-                    break;
-                }
-            }
+            //foreach (var item in User.Claims)
+            //{
+            //    if (item.Type == "Login")
+            //    {
+            //        login = item.Value;
+            //        break;
+            //    }
+            //}
 
-            var currentUser = this.userService.FindByLogin(login);
+            //var currentUser = this.userService.FindByLogin(login);
 
-            if (currentUser != null)
-            {
+            //if (currentUser != null)
+            //{
                 if (newActivity.AuthorUids == null)
                 {
                     newActivity.AuthorUids = new List<Guid>();
                 }
 
-                newActivity.AuthorUids.Add(currentUser.Uid);
+                newActivity.AuthorUids.Add(UserDataManager.tempStore.First().Uid);
 
                 if (this.activitiesInteractor.Save(newActivity))
                 {
                     return Ok(new { success = "Мероприятие создано" });
                 }
-            }
+            //}
 
             return StatusCode(403);
         }
