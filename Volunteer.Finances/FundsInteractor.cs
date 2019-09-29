@@ -25,12 +25,12 @@
             this.activityManager = activityManager;
         }
 
-        public void NewCashFlow(decimal amount, Guid fundUid, Guid? activityUid)
+        public bool NewCashFlow(decimal amount, Guid fundUid, Guid? activityUid)
         {
             var fund = this.fundManager.Find(new Filter(nameof(Fund.Uid), fundUid)).FirstOrDefault();
 
             if (fund == null)
-                return;
+                return false;
 
             Activity activity = null;
 
@@ -39,7 +39,7 @@
                 activity = this.activityManager.Find(new Filter(nameof(Activity.Uid), fundUid)).FirstOrDefault();
 
                 if (activity == null)
-                    return;
+                    return false;
             }
 
             var cashFlow = new CashFlow
@@ -51,7 +51,7 @@
                 DateTime = DateTime.Now
             };
 
-            if(cashFlow.DateTime >= fund.StartDate && cashFlow.DateTime <= fund.EndDate)
+           // if(cashFlow.DateTime >= fund.StartDate && cashFlow.DateTime <= fund.EndDate)
             {
                 if (this.cashFlowManager.Save(cashFlow))
                 {
@@ -59,20 +59,20 @@
                         fund.CashFlows = new List<CashFlow>();
 
                     fund.CashFlows.Add(cashFlow);
+                    return true;
                 }
             }
 
-
+            return false;
         }
 
-        public void NewFund(string title, string description, decimal budget, DateTime start, DateTime end)
+        public void NewFund(string title, string description, DateTime start, DateTime end)
         {
             this.fundManager.Save(new Fund
             {
                 Uid = Guid.NewGuid(),
                 Title = title,
                 Description = description,
-                Budget = budget,
                 StartDate = start,
                 EndDate = end,
                 CashFlows = new List<CashFlow>()
@@ -84,9 +84,19 @@
             return this.fundManager.Find();
         }
 
-        public Fund FindByUid(Guid uid)
+        public Fund FindFundByUid(Guid uid)
         {
             return this.fundManager.Find(new Filter(nameof(Fund.Uid), uid)).FirstOrDefault();
+        }
+
+        public IEnumerable<CashFlow> GetAllCashFlows()
+        {
+            return this.cashFlowManager.Find();
+        }
+
+        public CashFlow FindCashFlowByUid(Guid uid)
+        {
+            return this.cashFlowManager.Find(new Filter(nameof(CashFlow.Uid), uid)).FirstOrDefault();
         }
     }
 }

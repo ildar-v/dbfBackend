@@ -20,8 +20,7 @@
                 Title = "Стартовый",
                 Description = "Стартовый фонд",
                 StartDate = DateTime.Now,
-                EndDate = DateTime.Now,
-                Budget = 10000,
+                EndDate = DateTime.Now
             });
             tempStore.Add(new Fund
             {
@@ -29,8 +28,7 @@
                 Title = "Продолжительный",
                 Description = "Продолжительный фонд",
                 StartDate = DateTime.Now,
-                EndDate = DateTime.Now,
-                Budget = 20000,
+                EndDate = DateTime.Now
             });
 
             FundDataManager.tempStore = tempStore;

@@ -84,7 +84,7 @@
             CreateMap<Fund, FundViewModel>()
                 .ForMember(cdto => cdto.Title, opt => opt.MapFrom(com => com.Title))
                 .ForMember(cdto => cdto.Description, opt => opt.MapFrom(com => com.Description))
-                .ForMember(cdto => cdto.Budget, opt => opt.MapFrom(com => com.Budget))
+                .ForMember(cdto => cdto.Budget, opt => opt.MapFrom(com => com.CashFlows.Sum(cf => cf.Amount)))
                 .ForMember(cdto => cdto.StartDate, opt => opt.MapFrom(com => com.StartDate))
                 .ForMember(cdto => cdto.EndDate, opt => opt.MapFrom(com => com.EndDate));
 
@@ -97,7 +97,7 @@
             CreateMap<Fund, FundDetailViewModel>()
                .ForMember(cdto => cdto.Title, opt => opt.MapFrom(com => com.Title))
                .ForMember(cdto => cdto.Description, opt => opt.MapFrom(com => com.Description))
-               .ForMember(cdto => cdto.Budget, opt => opt.MapFrom(com => com.Budget))
+               .ForMember(cdto => cdto.Budget, opt => opt.MapFrom(com => com.CashFlows.Sum(cf => cf.Amount)))
                .ForMember(cdto => cdto.StartDate, opt => opt.MapFrom(com => com.StartDate))
                .ForMember(cdto => cdto.EndDate, opt => opt.MapFrom(com => com.EndDate))
                .ForMember(cdto => cdto.CashFlows, opt => opt.MapFrom(com => com.CashFlows));

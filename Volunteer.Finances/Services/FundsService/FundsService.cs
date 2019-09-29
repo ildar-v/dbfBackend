@@ -27,7 +27,7 @@ namespace Volunteer.Finances.Services.FundsService
 
         public bool Save(Fund fund)
         {
-            if(fund == null || fund.Uid == Guid.Empty || string.IsNullOrWhiteSpace(fund.Title) || fund.Budget == default(decimal))
+            if(fund == null || fund.Uid == Guid.Empty || string.IsNullOrWhiteSpace(fund.Title))
             {
                 return false;
             }
