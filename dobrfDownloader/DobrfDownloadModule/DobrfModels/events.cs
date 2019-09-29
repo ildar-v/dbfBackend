@@ -6,6 +6,6 @@ namespace DobrfDownloadModule.DobrfModels
 {
     public class events
     {
-        public @event[] results { get; set; }
+        public List<@event> results { get; set; }
     }
 }
