@@ -64,7 +64,6 @@
             return new NotFoundResult();
         }
 
-        [Authorize]
         [HttpPost("api/activity")]
         public ActionResult<ActivityDetailViewModel> Post([FromBody]ActivityCreateModel activityModel)
         {
@@ -100,7 +99,6 @@
             return StatusCode(403);
         }
 
-        [Authorize]
         [HttpPost("api/activity/comment")]
         public ActionResult<IEnumerable<CommentViewModel>> Post([FromBody] CommentModel commentModel)
         {

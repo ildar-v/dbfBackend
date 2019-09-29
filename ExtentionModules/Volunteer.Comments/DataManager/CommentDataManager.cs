@@ -21,18 +21,11 @@ namespace Volunteer.Comments.DataManager
             return tempStore.Where(i => filterPredicate.Invoke(i));
         }
 
-        public bool Save(Comment enitity)
+        public bool Save(Comment comment)
         {
-            var exists = tempStore.FirstOrDefault(i => i.Uid == enitity.Uid);
-            if (exists == null)
-            {
-                tempStore.Add(enitity);
-            }
-            else
-            {
-                tempStore.Remove(exists);
-                tempStore.Add(enitity);
-            }
+            comment.Uid = new Guid();
+            comment.AddDateTime = DateTime.Now;
+            tempStore.Add(comment);
             return true;
         }
     }
