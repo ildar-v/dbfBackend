@@ -115,7 +115,7 @@
             return Ok(new { success = "Движение средств успешно записано" });
         }
 
-        [HttpPost("api/activity/comment")]
+        [HttpPost("api/fund/comment")]
         public ActionResult<IEnumerable<CommentViewModel>> Post([FromBody] CommentModel commentModel)
         {
             var comment = mapper.Map<Comment>(commentModel);
