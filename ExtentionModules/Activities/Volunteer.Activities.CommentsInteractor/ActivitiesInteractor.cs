@@ -53,10 +53,17 @@
 
             foreach (var activity in activities)
             {
+                var commentsCount = this.commentSimpleManager.Find(new Filter(new Dictionary<string, object[]>
+                    {
+                        { "EntityUid", new object[] { activity.Uid } },
+                        { "EntityType", new object[] { typeof(Activity) } }
+                    })).Count();
+
                 result.Add(new ActivityDTO
                 {
                     Activity = activity,
                     Mark = GetMark(activity),
+                    CommentsCount = commentsCount,
                     Tags = tagManager.Find().Where(t => t.EntityUids.Contains(activity.Uid))
                 });
             }
@@ -125,7 +132,7 @@
             var activity = this.mapper.Map<Activity>(entity);
             activity.Uid = Guid.NewGuid();
             activity.AddDateTime = DateTime.Now;
-            List<ActivitiesUsers> roles = new List<ActivitiesUsers>();
+            var roles = new List<ActivitiesUsers>();
 
             if (entity.AuthorUids == null)
             {

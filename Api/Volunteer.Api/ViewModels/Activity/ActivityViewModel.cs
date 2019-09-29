@@ -13,5 +13,6 @@
         public DateTime AddDateTime { get; set; }
         public IEnumerable<TagViewModel> Tags { get; set; }
         public int Mark { get; set; }
+        public int CommentsCount { get; set; }
     }
 }

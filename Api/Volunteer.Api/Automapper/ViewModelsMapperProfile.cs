@@ -54,6 +54,7 @@
                 .ForMember(lvm => lvm.Location, opt => opt.MapFrom(vm => vm.Activity.Location.ToString()))
                 .ForMember(lvm => lvm.AddDateTime, opt => opt.MapFrom(vm => vm.Activity.AddDateTime))
                 .ForMember(lvm => lvm.Mark, opt => opt.MapFrom(vm => vm.Mark))
+                .ForMember(lvm => lvm.CommentsCount, opt => opt.MapFrom(vm => vm.CommentsCount))
                 .ForMember(avm => avm.Tags, opt => opt.MapFrom(dto => dto.Tags));
 
             CreateMap<Comment, CommentViewModel>()
