@@ -8,9 +8,6 @@
 
     public static class DobrfData
     {
-        public static Guid UserUid1 = new Guid("e281797e-1425-4b21-8650-3407d01cea00");
-        public static Guid UserUid2 = new Guid("4db193ce-c7c4-4674-99c8-9c2e9bd5ee9a");
-
         static DobrfData()
         {
             DobrfDownloader dobrfDownloader = new DobrfDownloader();
@@ -30,8 +27,6 @@
                 });
             }
 
-            tempUserStore[0].Uid = UserUid1;
-            tempUserStore[1].Uid = UserUid2;
             UserDataManager.tempStore.AddRange(tempUserStore);
         }
 

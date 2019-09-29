@@ -27,6 +27,10 @@
             {
                 tempStore.Add(mark);
             }
+            else if (exists.Flag == mark.Flag)
+            {
+                tempStore.Remove(exists);
+            }
             else
             {
                 tempStore.Remove(exists);

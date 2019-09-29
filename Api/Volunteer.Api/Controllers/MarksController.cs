@@ -50,9 +50,7 @@ namespace Volunteer.Api.Controllers
                 return BadRequest("Неверное значение параметров");
             }
             markService.SaveMark(mark);
-            // TODO: Возвращать только что загруженную оценку.
             var raiting = markService.GetRaiting(mark.EntityUid);
-            // END TODO.
             return Ok(raiting);
         }
     }
