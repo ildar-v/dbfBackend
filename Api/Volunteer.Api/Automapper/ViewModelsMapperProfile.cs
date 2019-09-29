@@ -104,7 +104,7 @@
             CreateMap<Fund, FundViewModel>()
                 .ForMember(cdto => cdto.Title, opt => opt.MapFrom(com => com.Title))
                 .ForMember(cdto => cdto.Description, opt => opt.MapFrom(com => com.Description))
-                .ForMember(cdto => cdto.Budget, opt => opt.MapFrom(com => com.Budget))
+                .ForMember(cdto => cdto.Budget, opt => opt.MapFrom(com => com.CashFlows.Sum(cf => cf.Amount)))
                 .ForMember(cdto => cdto.StartDate, opt => opt.MapFrom(com => com.StartDate))
                 .ForMember(cdto => cdto.EndDate, opt => opt.MapFrom(com => com.EndDate));
 
@@ -117,10 +117,17 @@
             CreateMap<Fund, FundDetailViewModel>()
                .ForMember(cdto => cdto.Title, opt => opt.MapFrom(com => com.Title))
                .ForMember(cdto => cdto.Description, opt => opt.MapFrom(com => com.Description))
-               .ForMember(cdto => cdto.Budget, opt => opt.MapFrom(com => com.Budget))
+               .ForMember(cdto => cdto.Budget, opt => opt.MapFrom(com => com.CashFlows.Sum(cf => cf.Amount)))
                .ForMember(cdto => cdto.StartDate, opt => opt.MapFrom(com => com.StartDate))
                .ForMember(cdto => cdto.EndDate, opt => opt.MapFrom(com => com.EndDate))
                .ForMember(cdto => cdto.CashFlows, opt => opt.MapFrom(com => com.CashFlows));
+
+            CreateMap<RegisterModel, UserDTO>()
+               .ForMember(cdto => cdto.FullName, opt => opt.MapFrom(com => com.FullName))
+               .ForMember(cdto => cdto.Login, opt => opt.MapFrom(com => com.Login))
+               .ForMember(cdto => cdto.PasswordHash, opt => opt.MapFrom(com => com.Password))
+               .ForMember(cdto => cdto.AvatarUrl, opt => opt.MapFrom(com => com.AvatarUrl))
+               .ForMember(cdto => cdto.About, opt => opt.MapFrom(com => com.About));
         }
     }
 }

@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using AutoMapper;
     using Microsoft.AspNetCore.Mvc;
+    using Volunteer.Api.Models;
     using Volunteer.Api.ViewModels.Finance;
     using Volunteer.Finances;
     using Volunteer.Finances.Models;
@@ -22,7 +23,7 @@
         }
 
         [HttpGet("api/fund")]
-        public IActionResult Get()
+        public IActionResult GetAllFunds()
         {
             var funds = this.fundsInteractor.GetAllFunds();
 
@@ -36,9 +37,10 @@
         }
 
         [HttpGet("api/fund/{id}")]
-        public IActionResult Get(Guid id)
+        public IActionResult GetFund(Guid id)
+
         {
-            var fund = this.fundsInteractor.FindByUid(id);
+            var fund = this.fundsInteractor.FindFundByUid(id);
 
             if(fund == null)
             {
@@ -52,10 +54,52 @@
         [HttpPost("api/fund")]
         public IActionResult CreateFund([FromBody] FundCreateModel model)
         {
-            this.fundsInteractor.NewFund(model.Title, model.Description, model.Budget, model.StartDate, model.EndDate);
+            this.fundsInteractor.NewFund(model.Title, model.Description, model.StartDate, model.EndDate);
             return Ok(new { success = "Фонд создан" });
         }
 
+        [HttpGet("api/cashflows")]
+        public IActionResult GetAllCashFlows()
+        {
+            var cashFlows = this.fundsInteractor.GetAllCashFlows();
 
+            if (cashFlows == null)
+            {
+                return NotFound(new { error = "Движения средств не найдены" });
+            }
+
+            var result = this.mapper.Map<IEnumerable<CashFlowViewModel>>(cashFlows);
+            return Ok(result);
+        }
+
+
+        [HttpGet("api/cashflows/{id}")]
+        public IActionResult GetCashFlow(Guid id)
+        {
+            var cashFlow = this.fundsInteractor.FindCashFlowByUid(id);
+
+            if (cashFlow == null)
+            {
+                return NotFound(new { error = "Движения средств не найдены" });
+            }
+
+            var result = this.mapper.Map<CashFlowViewModel>(cashFlow);
+            return Ok(result);
+        }
+
+        [HttpPost("api/cashflows")]
+        public IActionResult Create(CashFlowCreateModel model)
+        {
+            var fund = this.fundsInteractor.FindFundByUid(model.FundUid);
+
+            if (fund == null)
+            {
+                return NotFound(new { error = "Фонд не найден" });
+            }
+
+            this.fundsInteractor.NewCashFlow(model.Amount, model.FundUid, model.ActivityUid);
+
+            return Ok(new { success = "Движение средств успешно записано" });
+        }
     }
 }
