@@ -35,7 +35,7 @@
             return Ok(result);
         }
 
-        [HttpGet("api/{id}")]
+        [HttpGet("api/fund/{id}")]
         public IActionResult Get(Guid id)
         {
             var fund = this.fundsInteractor.FindByUid(id);
@@ -55,5 +55,7 @@
             this.fundsInteractor.NewFund(model.Title, model.Description, model.Budget, model.StartDate, model.EndDate);
             return Ok(new { success = "Фонд создан" });
         }
+
+
     }
 }
