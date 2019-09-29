@@ -91,33 +91,18 @@
         public ActionResult<ActivityDetailViewModel> Post([FromBody]ActivityCreateModel activityModel)
         {
             var newActivity = mapper.Map<ActivityCreateDTO>(activityModel);
-            //string login = string.Empty;
 
-            //foreach (var item in User.Claims)
-            //{
-            //    if (item.Type == "Login")
-            //    {
-            //        login = item.Value;
-            //        break;
-            //    }
-            //}
+            if (newActivity.AuthorUids == null)
+            {
+                newActivity.AuthorUids = new List<Guid>();
+            }
 
-            //var currentUser = this.userService.FindByLogin(login);
+            newActivity.AuthorUids.Add(UserDataManager.tempStore.First().Uid);
 
-            //if (currentUser != null)
-            //{
-                if (newActivity.AuthorUids == null)
-                {
-                    newActivity.AuthorUids = new List<Guid>();
-                }
-
-                newActivity.AuthorUids.Add(UserDataManager.tempStore.First().Uid);
-
-                if (this.activitiesInteractor.Save(newActivity))
-                {
-                    return Ok(new { success = "Мероприятие создано" });
-                }
-            //}
+            if (this.activitiesInteractor.Save(newActivity))
+            {
+                return Ok(new { success = "Мероприятие создано" });
+            }
 
             return StatusCode(403);
         }

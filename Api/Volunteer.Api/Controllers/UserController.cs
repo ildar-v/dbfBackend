@@ -9,6 +9,7 @@
     using Volunteer.BLModels.Entities;
     using System;
     using Volunteer.MainModule.Managers;
+    using Volunteer.Api.ViewModels.User;
 
     [ApiController]
     public class UserController : ControllerBase
@@ -39,21 +40,18 @@
         }
 
         [HttpPost("api/user")]
-        public ActionResult Post(string activityUid, string userUid)
+        public ActionResult Post([FromBody]UserActivityModel model)
         {
-            if (Guid.TryParse(activityUid, out var _activityUid) && Guid.TryParse(userUid, out var _userUid))
+            var entry = new ActivitiesUsers
             {
-                var entry = new ActivitiesUsers
-                {
-                    ActivityGuid = _activityUid,
-                    UserGuid = _userUid,
-                    Uid = Guid.NewGuid(),
-                    UserType = BLModels.Enums.UserTypes.Volunteer
-                };
-                if (activitiesUsersService.Save(entry))
-                {
-                    return Ok();
-                }
+                ActivityGuid = model.ActivityUid,
+                UserGuid = model.UserUid,
+                Uid = Guid.NewGuid(),
+                UserType = BLModels.Enums.UserTypes.Volunteer
+            };
+            if (activitiesUsersService.Save(entry))
+            {
+                return Ok();
             }
             return BadRequest("Ошибка сохранения");
         }
